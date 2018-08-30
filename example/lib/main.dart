@@ -47,7 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
     "ScaleAndFadeTransformer",
     "ZoomInPageTransformer",
     "ZoomOutPageTransformer",
-    "DepthPageTransformer"
+    "DeepthPageTransformer"
   ];
 
   String _type;
@@ -81,8 +81,8 @@ class _MyHomePageState extends State<MyHomePage> {
         return new ZoomInPageTransformer();
       case 'ZoomOutPageTransformer':
         return new ZoomOutPageTransformer();
-      case 'DepthPageTransformer':
-        return new DepthPageTransformer();
+      case 'DeepthPageTransformer':
+        return new DeepthPageTransformer();
     }
 
     throw new Exception("Not a type");

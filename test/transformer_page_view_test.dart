@@ -111,7 +111,7 @@ void main() {
     // Build our app and trigger a frame.
     await tester.pumpWidget(MaterialApp(
         home: new TransformerPageView(
-            transformer:new DepthPageTransformer(),
+            transformer:new DeepthPageTransformer(),
             itemBuilder: (context, index) {
               return Text("0");
             },
@@ -129,7 +129,7 @@ void main() {
     await tester.pumpWidget(MaterialApp(
         home: new TransformerPageView(
           controller: controller,
-            transformer:new DepthPageTransformer(),
+            transformer:new DeepthPageTransformer(),
             itemBuilder: (context, index) {
               return Text("0");
             },

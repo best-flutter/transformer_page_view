@@ -138,8 +138,8 @@ class ZoomOutPageTransformer extends PageTransformer {
   }
 }
 
-class DepthPageTransformer extends PageTransformer {
-  DepthPageTransformer() : super(reverse: true);
+class DeepthPageTransformer extends PageTransformer {
+  DeepthPageTransformer() : super(reverse: true);
 
   @override
   Widget transform(Widget child, TransformInfo info) {

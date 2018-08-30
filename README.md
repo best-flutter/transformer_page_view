@@ -19,6 +19,32 @@
 PageTransformer for flutter
 
 
+## Very simple to use
+
+
+```
+import 'package:transformer_page_view/transformer_page_view.dart';
+
+...
+
+new TransformerPageView(
+loop: true,
+transformer: new AccordionTransformer(),
+itemBuilder: (BuildContext context, int index) {
+  return new Container(
+    color: list[index%list.length],
+    child: new Center(
+      child: new Text("$index",style: new TextStyle(fontSize: 80.0,color: Colors.white),),
+    ),
+  );
+},
+itemCount: 3)
+```
+
+Almost the same as PageView.builder, simplely specify a `transformer` to `TransformerPageView`, 
+    which is a sub class of `PageTransformer`
+
+
 ## Show cases
 
 
@@ -26,33 +52,35 @@ PageTransformer for flutter
 
 ![AccordionTransformer](https://github.com/jzoom/images/raw/master/AccordionTransformer.gif)
 
->See code [here]()
+>See code [here](https://github.com/jzoom/transformer_page_view/blob/master/example/lib/AccordionTransformer.dart)
 
 ![ThreeDTransformer](https://github.com/jzoom/images/raw/master/ThreeDTransformer.gif)
 
->See code [here]()
+>See code [here](https://github.com/jzoom/transformer_page_view/blob/master/example/lib/ThreeDTransformer.dart)
+
 
 ![ScaleAndFadeTransformer](https://github.com/jzoom/images/raw/master/ScaleAndFadeTransformer.gif)
 
->See code [here]()
+>See code [here](https://github.com/jzoom/transformer_page_view/blob/master/example/lib/ScaleAndFadeTransformers.dart)
+
 
 ![ZoomInPageTransformer](https://github.com/jzoom/images/raw/master/ZoomInPageTransformer.gif)
 
->See code [here]()
+>See code [here](https://github.com/jzoom/transformer_page_view/blob/master/example/lib/ZoomInPageTransformer.dart)
+
 
 ![ZoomOutPageTransformer](https://github.com/jzoom/images/raw/master/ZoomOutPageTransformer.gif)
 
->See code [here]()
+>See code [here](https://github.com/jzoom/transformer_page_view/blob/master/example/lib/ZoomOutPageTransformer.dart)
+
 
 ![DepthPageTransformer](https://github.com/jzoom/images/raw/master/DepthPageTransformer.gif)
 
->See code [here]()
+>See code [here](https://github.com/jzoom/transformer_page_view/blob/master/example/lib/DepthPageTransformers.dart)
+
 
 
 ### Parallax
-
-
-
 
 
 
