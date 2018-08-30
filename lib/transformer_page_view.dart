@@ -48,10 +48,6 @@ abstract class PageTransformer {
 }
 
 class TransformerPageView extends StatefulWidget {
-  static PageTransformer deepth = new DepthPageTransformer();
-  static PageTransformer zoomOut = new ZoomOutPageTransformer();
-  static PageTransformer scaleAndFade = new ScaleAndFadeTransformer();
-  static PageTransformer threeD = new ThreeDTransformer();
   /// Create a `transformed` widget base on the widget that has been passed to  the [PageTransformer.transform].
   /// See [TransformInfo]
   ///
