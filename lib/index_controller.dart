@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 
+
 abstract class ChangeNotifierMixin<T extends StatefulWidget> extends State<T> {
   ChangeNotifier _controller;
 

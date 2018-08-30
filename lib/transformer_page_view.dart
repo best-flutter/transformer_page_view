@@ -4,7 +4,13 @@ import 'package:flutter/widgets.dart';
 import 'dart:math' as Math;
 import 'package:transformer_page_view/index_controller.dart';
 import 'package:vector_math/vector_math_64.dart';
+import 'package:transformer_page_view/parallax.dart';
+
+
 export 'package:transformer_page_view/index_controller.dart';
+export 'package:transformer_page_view/parallax.dart';
+
+
 
 part 'transformers.dart';
 
