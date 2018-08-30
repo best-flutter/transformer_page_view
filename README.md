@@ -2,8 +2,17 @@
 
 PageTransformer for flutter
 
-## Getting Started
+## Show cases
 
-For help getting started with Flutter, view our online [documentation](https://flutter.io/).
 
-For help on editing package code, view the [documentation](https://flutter.io/developing-packages/).
+![](https://github.com/jzoom/images/raw/master/AccordionTransformer.gif)
+
+![](https://github.com/jzoom/images/raw/master/ThreeDTransformer.gif)
+
+![](https://github.com/jzoom/images/raw/master/ScaleAndFadeTransformer.gif)
+
+![](https://github.com/jzoom/images/raw/master/ZoomInPageTransformer.gif)
+
+![](https://github.com/jzoom/images/raw/master/ZoomOutPageTransformer.gif)
+
+![](https://github.com/jzoom/images/raw/master/DepthPageTransformer.gif)

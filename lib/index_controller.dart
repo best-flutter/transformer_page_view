@@ -1,16 +1,13 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 
-
-
-abstract class ChangeNotifierMixin<T extends StatefulWidget> extends State<T>{
-
+abstract class ChangeNotifierMixin<T extends StatefulWidget> extends State<T> {
   ChangeNotifier _controller;
 
   @override
   void initState() {
     _controller = getNotifier();
-    if(_controller != null ){
+    if (_controller != null) {
       _controller.addListener(onChangeNotifier);
     }
 
@@ -21,7 +18,7 @@ abstract class ChangeNotifierMixin<T extends StatefulWidget> extends State<T>{
 
   @override
   void dispose() {
-    if(_controller!= null ){
+    if (_controller != null) {
       _controller.removeListener(onChangeNotifier);
     }
     super.dispose();
@@ -29,12 +26,12 @@ abstract class ChangeNotifierMixin<T extends StatefulWidget> extends State<T>{
 
   @override
   void didUpdateWidget(T oldWidget) {
-    if(_controller != getNotifier()){
-      if(_controller!= null ){
+    if (_controller != getNotifier()) {
+      if (_controller != null) {
         _controller.removeListener(onChangeNotifier);
       }
       _controller = getNotifier();
-      if(_controller != null ){
+      if (_controller != null) {
         _controller.addListener(onChangeNotifier);
       }
     }
@@ -42,7 +39,6 @@ abstract class ChangeNotifierMixin<T extends StatefulWidget> extends State<T>{
   }
 
   ChangeNotifier getNotifier();
-
 }
 
 class IndexController extends ChangeNotifier {

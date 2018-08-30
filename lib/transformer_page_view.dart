@@ -37,7 +37,6 @@ class TransformInfo {
 }
 
 abstract class PageTransformer {
-
   ///
   final bool reverse;
 
@@ -119,10 +118,10 @@ class TransformerPageView extends StatefulWidget {
     this.transformer,
     this.itemBuilder,
     @required this.itemCount,
-  }) :
-      assert( itemBuilder != null || transformer  != null  ),
-        this.reverse = transformer == null ?false : transformer.reverse,
-        this.duration = duration ?? new Duration(milliseconds: kDefaultAutoplayTransactionDuration),
+  })  : assert(itemBuilder != null || transformer != null),
+        this.reverse = transformer == null ? false : transformer.reverse,
+        this.duration = duration ??
+            new Duration(milliseconds: kDefaultAutoplayTransactionDuration),
         super(key: key);
 
   @override
@@ -131,7 +130,8 @@ class TransformerPageView extends StatefulWidget {
   }
 }
 
-class _TransformerPageViewState extends State<TransformerPageView> with ChangeNotifierMixin<TransformerPageView> {
+class _TransformerPageViewState extends State<TransformerPageView>
+    with ChangeNotifierMixin<TransformerPageView> {
   Size _size;
   int _activeIndex;
   PageController _pageController;
@@ -166,7 +166,6 @@ class _TransformerPageViewState extends State<TransformerPageView> with ChangeNo
     return renderIndex;
   }
 
-
   Widget _buildItemNormal(BuildContext context, int index) {
     int renderIndex = _getRenderIndex(index);
     Widget child = widget.itemBuilder(context, renderIndex);
@@ -174,7 +173,6 @@ class _TransformerPageViewState extends State<TransformerPageView> with ChangeNo
   }
 
   Widget _buildItem(BuildContext context, int index) {
-
     return new AnimatedBuilder(
         animation: _pageController,
         builder: (BuildContext c, Widget w) {
@@ -193,9 +191,9 @@ class _TransformerPageViewState extends State<TransformerPageView> with ChangeNo
           }
           position *= widget.viewportFraction;
 
-          if( widget.curve !=null ){
+          if (widget.curve != null) {
             double t = widget.curve.transform(position.abs());
-            if(position < 0){
+            if (position < 0) {
               t = -t;
             }
             position = t;
@@ -212,7 +210,8 @@ class _TransformerPageViewState extends State<TransformerPageView> with ChangeNo
 
   @override
   Widget build(BuildContext context) {
-    IndexedWidgetBuilder builder = _transformer==null ? _buildItemNormal : _buildItem;
+    IndexedWidgetBuilder builder =
+        _transformer == null ? _buildItemNormal : _buildItem;
     return new PageView.builder(
       itemBuilder: builder,
       itemCount: _itemCount,
@@ -225,9 +224,7 @@ class _TransformerPageViewState extends State<TransformerPageView> with ChangeNo
     );
   }
 
-
-
-  void _onIndexChanged(int index){
+  void _onIndexChanged(int index) {
     _activeIndex = index;
   }
 
@@ -244,9 +241,8 @@ class _TransformerPageViewState extends State<TransformerPageView> with ChangeNo
   }
 
   int _getInitPage() {
-    int initPage = widget.reverse
-        ? (widget.itemCount - widget.index - 1)
-        : widget.index;
+    int initPage =
+        widget.reverse ? (widget.itemCount - widget.index - 1) : widget.index;
     if (widget.loop) {
       initPage += kMiddleValue;
     }
@@ -270,8 +266,8 @@ class _TransformerPageViewState extends State<TransformerPageView> with ChangeNo
     _transformer = widget.transformer;
     int initPage = _getInitPage();
     _itemCount = widget.loop ? widget.itemCount + kMaxValue : widget.itemCount;
-    if(_activeIndex != initPage ||
-        widget.viewportFraction  != _pageController.viewportFraction){
+    if (_activeIndex != initPage ||
+        widget.viewportFraction != _pageController.viewportFraction) {
       _activeIndex = initPage;
       _pageController = new PageController(
           initialPage: initPage, viewportFraction: widget.viewportFraction);
@@ -297,20 +293,19 @@ class _TransformerPageViewState extends State<TransformerPageView> with ChangeNo
     return widget.controller;
   }
 
-  int _calcNextIndex( bool next ){
+  int _calcNextIndex(bool next) {
     int currentIndex = _activeIndex;
-    if(widget.reverse   ){
-      if(next){
-        currentIndex --;
-      }else{
-        currentIndex ++;
+    if (widget.reverse) {
+      if (next) {
+        currentIndex--;
+      } else {
+        currentIndex++;
       }
-
-    }else{
-      if(next){
-        currentIndex ++;
-      }else{
-        currentIndex --;
+    } else {
+      if (next) {
+        currentIndex++;
+      } else {
+        currentIndex--;
       }
     }
     return currentIndex;
@@ -318,27 +313,21 @@ class _TransformerPageViewState extends State<TransformerPageView> with ChangeNo
 
   @override
   void onChangeNotifier() {
-    switch(widget.controller.event){
+    switch (widget.controller.event) {
       case IndexController.MOVE:
-
         break;
       case IndexController.PREVIOUS:
         {
-          _pageController.animateToPage(
-              _calcNextIndex( false ) ,
-              duration:widget.duration,
-              curve: widget.curve ?? Curves.ease);
+          _pageController.animateToPage(_calcNextIndex(false),
+              duration: widget.duration, curve: widget.curve ?? Curves.ease);
         }
-
 
         break;
       case IndexController.NEXT:
-       {
-         _pageController.animateToPage(
-             _calcNextIndex( true )  ,
-             duration:widget.duration,
-             curve: widget.curve ?? Curves.ease);
-       }
+        {
+          _pageController.animateToPage(_calcNextIndex(true),
+              duration: widget.duration, curve: widget.curve ?? Curves.ease);
+        }
         break;
     }
   }

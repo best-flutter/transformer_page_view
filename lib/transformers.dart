@@ -4,12 +4,19 @@ class AccordionTransformer extends PageTransformer {
   @override
   Widget transform(Widget child, TransformInfo info) {
     double position = info.position;
-    if(position < 0.0){
-      return new Transform.scale(scale: 1+position, alignment: Alignment.topRight, child: child,);
-    }else{
-      return new Transform.scale(scale: 1-position, alignment: Alignment.bottomLeft, child: child,);
+    if (position < 0.0) {
+      return new Transform.scale(
+        scale: 1 + position,
+        alignment: Alignment.topRight,
+        child: child,
+      );
+    } else {
+      return new Transform.scale(
+        scale: 1 - position,
+        alignment: Alignment.bottomLeft,
+        child: child,
+      );
     }
-
   }
 }
 
@@ -20,43 +27,47 @@ class ThreeDTransformer extends PageTransformer {
     double height = info.height;
     double width = info.width;
     double pivotX = 0.0;
-    if (position < 0 && position >= -1) {// left scrolling
+    if (position < 0 && position >= -1) {
+      // left scrolling
       pivotX = width;
     }
-    return new Transform(transform: new Matrix4.identity()..rotate(new Vector3(0.0,2.0,0.0), position *1.5 ),
-    origin: new Offset(pivotX, height/2),
-    child: child,);
+    return new Transform(
+      transform: new Matrix4.identity()
+        ..rotate(new Vector3(0.0, 2.0, 0.0), position * 1.5),
+      origin: new Offset(pivotX, height / 2),
+      child: child,
+    );
   }
-
 }
 
 class ScaleAndFadeTransformer extends PageTransformer {
-
   final double _scale;
   final double _fade;
 
-  ScaleAndFadeTransformer({
-    double fade : 0.8,
-    double scale : 0.8
-}): _fade = fade,_scale=scale;
+  ScaleAndFadeTransformer({double fade: 0.3, double scale: 0.8})
+      : _fade = fade,
+        _scale = scale;
 
   @override
   Widget transform(Widget item, TransformInfo info) {
     print(info.position);
 
     double position = info.position;
-    double scaleFactor =(1 - position.abs() )*( 1 - _scale) ;
-    double fadeFactor =(1 - position.abs() )*( 1 - _fade) ;
-    double opatity = _fade+ fadeFactor ;
-    double scale =_scale+scaleFactor ;
-    return new Opacity(opacity: opatity,child:
-      new Transform.scale(scale: scale,child: item,),);
+    double scaleFactor = (1 - position.abs()) * (1 - _scale);
+    double fadeFactor = (1 - position.abs()) * (1 - _fade);
+    double opatity = _fade + fadeFactor;
+    double scale = _scale + scaleFactor;
+    return new Opacity(
+      opacity: opatity,
+      child: new Transform.scale(
+        scale: scale,
+        child: item,
+      ),
+    );
   }
-
 }
 
-class ZoomInPageTransformer extends PageTransformer{
-
+class ZoomInPageTransformer extends PageTransformer {
   static const double ZOOM_MAX = 0.5;
   @override
   Widget transform(Widget child, TransformInfo info) {
@@ -64,14 +75,16 @@ class ZoomInPageTransformer extends PageTransformer{
     double width = info.width;
     double height = info.height;
     if (position > 0 && position <= 1) {
-      return new Transform.translate(offset: new Offset(-width*position, 0.0),
-        child: new Transform.scale(scale: 1 - position,child: child,),
+      return new Transform.translate(
+        offset: new Offset(-width * position, 0.0),
+        child: new Transform.scale(
+          scale: 1 - position,
+          child: child,
+        ),
       );
-
     }
     return child;
   }
-
 }
 
 class ZoomOutPageTransformer extends PageTransformer {

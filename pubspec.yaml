@@ -1,8 +1,8 @@
 name: transformer_page_view
 description: PageTransformer for flutter
 version: 0.0.1
-author:
-homepage:
+author: JZoom <jzoom8112@gmail.com>
+homepage:  https://github.com/jzoom/transformer_page_view
 
 environment:
   sdk: ">=2.0.0-dev.50.0 <3.0.0"

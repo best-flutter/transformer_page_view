@@ -9,9 +9,11 @@ import 'package:flutter/cupertino.dart';
 void main() => runApp(new MyApp());
 List<Color> list = [Colors.yellow, Colors.green, Colors.blue];
 
-List<String> images = ["assets/Hepburn2.jpg",
-"assets/Hepburn5.jpg",
-"assets/Hepburn4.jpg",];
+List<String> images = [
+  "assets/Hepburn2.jpg",
+  "assets/Hepburn5.jpg",
+  "assets/Hepburn4.jpg",
+];
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -39,10 +41,14 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   IndexController _controller;
-  List<String> _types = ["AccordionTransformer","ThreeDTransformer",
+  List<String> _types = [
+    "AccordionTransformer",
+    "ThreeDTransformer",
     "ScaleAndFadeTransformer",
     "ZoomInPageTransformer",
-    "ZoomOutPageTransformer","DepthPageTransformer"];
+    "ZoomOutPageTransformer",
+    "DepthPageTransformer"
+  ];
 
   String _type;
   FixedExtentScrollController controller;
@@ -63,8 +69,8 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
   }
 
-  PageTransformer getTransformer(){
-    switch(_type){
+  PageTransformer getTransformer() {
+    switch (_type) {
       case 'AccordionTransformer':
         return new AccordionTransformer();
       case 'ThreeDTransformer':
@@ -77,9 +83,9 @@ class _MyHomePageState extends State<MyHomePage> {
         return new ZoomOutPageTransformer();
       case 'DepthPageTransformer':
         return new DepthPageTransformer();
-      case 'ZoomOutPageTransformer':
-        return new ZoomOutPageTransformer();
     }
+
+    throw new Exception("Not a type");
   }
 
   @override
@@ -94,13 +100,14 @@ class _MyHomePageState extends State<MyHomePage> {
             children: <Widget>[
               new RaisedButton(
                 onPressed: () {
-                 _controller.previous();
-
+                  _controller.previous();
                 },
                 color: Colors.blue,
                 child: new Text("Preious"),
               ),
-              new SizedBox(width: 8.0,),
+              new SizedBox(
+                width: 8.0,
+              ),
               new RaisedButton(
                 onPressed: () {
                   _controller.next();
@@ -108,44 +115,52 @@ class _MyHomePageState extends State<MyHomePage> {
                 color: Colors.blue,
                 child: new Text("Next"),
               ),
-              new SizedBox(width: 8.0,),
+              new SizedBox(
+                width: 8.0,
+              ),
               new RaisedButton(
                 onPressed: () {
-                  showModalBottomSheet(context: context, builder: (_){
-                    return new CupertinoPicker(
-                      scrollController: controller,
-                        itemExtent: 30.0, onSelectedItemChanged: (int index){
-                        setState(() {
-
-                          controller = new FixedExtentScrollController(
-                            initialItem: index
-                          );
-                          _type = _types[index];
-                          if(_type == 'ScaleAndFadeTransformer'){
-                            _viewportFraction = 0.8;
-                          }else{
-                            _viewportFraction = 1.0;
-                          }
-                        });
-                    }, children:_types.map((t)=>new Text(t)).toList());
-                  });
+                  showModalBottomSheet(
+                      context: context,
+                      builder: (_) {
+                        return new CupertinoPicker(
+                            scrollController: controller,
+                            itemExtent: 30.0,
+                            onSelectedItemChanged: (int index) {
+                              setState(() {
+                                controller = new FixedExtentScrollController(
+                                    initialItem: index);
+                                _type = _types[index];
+                                if (_type == 'ScaleAndFadeTransformer') {
+                                  _viewportFraction = 0.8;
+                                } else {
+                                  _viewportFraction = 1.0;
+                                }
+                              });
+                            },
+                            children: _types.map((t) => new Text(t)).toList());
+                      });
                 },
                 color: Colors.blue,
                 child: new Text("Change Animation"),
               ),
             ],
           ),
-        new Expanded(child:  new SizedBox(
-          child:  new TransformerPageView(
-              loop: true,
-              viewportFraction: _viewportFraction,
-              controller: _controller,
-              transformer: getTransformer(),
-              itemBuilder: (BuildContext context, int index) {
-                return new Image.asset(images[index],fit: BoxFit.fill,);
-              },
-              itemCount: 3),
-        ))
+          new Expanded(
+              child: new SizedBox(
+            child: new TransformerPageView(
+                loop: true,
+                viewportFraction: _viewportFraction,
+                controller: _controller,
+                transformer: getTransformer(),
+                itemBuilder: (BuildContext context, int index) {
+                  return new Image.asset(
+                    images[index],
+                    fit: BoxFit.fill,
+                  );
+                },
+                itemCount: 3),
+          ))
         ],
       ),
     );
