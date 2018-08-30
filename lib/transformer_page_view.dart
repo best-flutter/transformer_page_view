@@ -46,6 +46,26 @@ abstract class PageTransformer {
   Widget transform(Widget child, TransformInfo info);
 }
 
+
+typedef Widget PageTransformerBuilderCallback(Widget child,TransformInfo info);
+
+class PageTransformerBuilder extends PageTransformer{
+
+  final PageTransformerBuilderCallback builder;
+
+  PageTransformerBuilder({
+    bool reverse : false,
+
+    @required
+    this.builder
+}) : assert(builder!=null), super(reverse:reverse);
+
+  @override
+  Widget transform(Widget child, TransformInfo info) {
+    return builder(child,info);
+  }
+}
+
 class TransformerPageView extends StatefulWidget {
   /// Create a `transformed` widget base on the widget that has been passed to  the [PageTransformer.transform].
   /// See [TransformInfo]
