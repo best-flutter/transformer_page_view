@@ -197,7 +197,13 @@ class _TransformerPageViewState extends State<TransformerPageView>
         animation: _pageController,
         builder: (BuildContext c, Widget w) {
           int renderIndex = _getRenderIndex(index);
-          Widget child = widget?.itemBuilder(context, renderIndex);
+          Widget child;
+          if(widget.itemBuilder!=null){
+            child = widget.itemBuilder(context, renderIndex);
+          }
+          if(child==null){
+            child = new Container();
+          }
           if (_size == null) {
             return child ?? new Container();
           }
