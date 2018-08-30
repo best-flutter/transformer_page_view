@@ -140,6 +140,6 @@ void main() {
     controller.move(0);
     controller.next();
     controller.previous();
-    
+
   });
 }
