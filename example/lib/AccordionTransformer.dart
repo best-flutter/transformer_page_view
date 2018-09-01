@@ -15,7 +15,6 @@ List<String> images = [
   "assets/Hepburn4.jpg",
 ];
 
-
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
@@ -39,38 +38,37 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => new _MyHomePageState();
 }
 
-
-
-
-class TestWidget extends StatelessWidget{
+class TestWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    List<Color> list = [Colors.redAccent,Colors.blueAccent,Colors.greenAccent];
+    List<Color> list = [
+      Colors.redAccent,
+      Colors.blueAccent,
+      Colors.greenAccent
+    ];
     return new TransformerPageView(
         loop: true,
         transformer: new AccordionTransformer(),
         itemBuilder: (BuildContext context, int index) {
           return new Container(
-            color: list[index%list.length],
+            color: list[index % list.length],
             child: new Center(
-              child: new Text("$index",style: new TextStyle(fontSize: 80.0,color: Colors.white),),
+              child: new Text(
+                "$index",
+                style: new TextStyle(fontSize: 80.0, color: Colors.white),
+              ),
             ),
           );
         },
         itemCount: 3);
   }
-
 }
 
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-
-
-
     return new Scaffold(
       body: new TestWidget(),
     );
   }
-
 }

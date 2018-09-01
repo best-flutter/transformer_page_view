@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import 'package:flutter_test/flutter_test.dart';
@@ -18,27 +17,27 @@ void main() {
     expect(find.text("0", skipOffstage: false), findsOneWidget);
   });
 
-
-  testWidgets('TransformerPageView transformer only', (WidgetTester tester) async {
+  testWidgets('TransformerPageView transformer only',
+      (WidgetTester tester) async {
     // Build our app and trigger a frame.
     await tester.pumpWidget(MaterialApp(
         home: new TransformerPageView(
-            transformer:new PageTransformerBuilder(builder: (Widget child,TransformInfo info){
-                return new Container(
-                  child: new Text("0"),
-                );
+            transformer: new PageTransformerBuilder(
+                builder: (Widget child, TransformInfo info) {
+              return new Container(
+                child: new Text("0"),
+              );
             }),
             itemCount: 10)));
 
-   // expect(find.text("0", skipOffstage: false), findsOneWidget);
+    // expect(find.text("0", skipOffstage: false), findsOneWidget);
   });
-
 
   testWidgets('TransformerPageView animations', (WidgetTester tester) async {
     // Build our app and trigger a frame.
     await tester.pumpWidget(MaterialApp(
         home: new TransformerPageView(
-            transformer:new ScaleAndFadeTransformer(),
+            transformer: new ScaleAndFadeTransformer(),
             itemBuilder: (context, index) {
               return Text("0");
             },
@@ -47,13 +46,11 @@ void main() {
     expect(find.text("0", skipOffstage: false), findsOneWidget);
   });
 
-
-
   testWidgets('TransformerPageView animations', (WidgetTester tester) async {
     // Build our app and trigger a frame.
     await tester.pumpWidget(MaterialApp(
         home: new TransformerPageView(
-            transformer:new AccordionTransformer(),
+            transformer: new AccordionTransformer(),
             itemBuilder: (context, index) {
               return Text("0");
             },
@@ -62,13 +59,11 @@ void main() {
     expect(find.text("0", skipOffstage: false), findsOneWidget);
   });
 
-
-
   testWidgets('TransformerPageView animations', (WidgetTester tester) async {
     // Build our app and trigger a frame.
     await tester.pumpWidget(MaterialApp(
         home: new TransformerPageView(
-            transformer:new ZoomInPageTransformer(),
+            transformer: new ZoomInPageTransformer(),
             itemBuilder: (context, index) {
               return Text("0");
             },
@@ -77,13 +72,11 @@ void main() {
     expect(find.text("0", skipOffstage: false), findsOneWidget);
   });
 
-
-
   testWidgets('TransformerPageView animations', (WidgetTester tester) async {
     // Build our app and trigger a frame.
     await tester.pumpWidget(MaterialApp(
         home: new TransformerPageView(
-            transformer:new ZoomOutPageTransformer(),
+            transformer: new ZoomOutPageTransformer(),
             itemBuilder: (context, index) {
               return Text("0");
             },
@@ -92,12 +85,11 @@ void main() {
     expect(find.text("0", skipOffstage: false), findsOneWidget);
   });
 
-
   testWidgets('TransformerPageView animations', (WidgetTester tester) async {
     // Build our app and trigger a frame.
     await tester.pumpWidget(MaterialApp(
         home: new TransformerPageView(
-            transformer:new ThreeDTransformer(),
+            transformer: new ThreeDTransformer(),
             itemBuilder: (context, index) {
               return Text("0");
             },
@@ -106,12 +98,11 @@ void main() {
     expect(find.text("0", skipOffstage: false), findsOneWidget);
   });
 
-
   testWidgets('TransformerPageView animations', (WidgetTester tester) async {
     // Build our app and trigger a frame.
     await tester.pumpWidget(MaterialApp(
         home: new TransformerPageView(
-            transformer:new DeepthPageTransformer(),
+            transformer: new DeepthPageTransformer(),
             itemBuilder: (context, index) {
               return Text("0");
             },
@@ -119,8 +110,6 @@ void main() {
 
     expect(find.text("0", skipOffstage: false), findsOneWidget);
   });
-
-
 
   testWidgets('TransformerPageView controller', (WidgetTester tester) async {
     // Build our app and trigger a frame.
@@ -128,8 +117,8 @@ void main() {
 
     await tester.pumpWidget(MaterialApp(
         home: new TransformerPageView(
-          controller: controller,
-            transformer:new DeepthPageTransformer(),
+            controller: controller,
+            transformer: new DeepthPageTransformer(),
             itemBuilder: (context, index) {
               return Text("0");
             },
@@ -140,6 +129,5 @@ void main() {
     controller.move(0);
     controller.next();
     controller.previous();
-
   });
 }

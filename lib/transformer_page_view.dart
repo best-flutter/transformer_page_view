@@ -4,13 +4,9 @@ import 'package:flutter/widgets.dart';
 import 'dart:math' as Math;
 import 'package:transformer_page_view/index_controller.dart';
 import 'package:vector_math/vector_math_64.dart';
-import 'package:transformer_page_view/parallax.dart';
-
 
 export 'package:transformer_page_view/index_controller.dart';
 export 'package:transformer_page_view/parallax.dart';
-
-
 
 part 'transformers.dart';
 
@@ -18,7 +14,7 @@ const int kMaxValue = 2000000000;
 const int kMiddleValue = 1000000000;
 
 ///  Default auto play transition duration (in millisecond)
-const int kDefaultAutoplayTransactionDuration = 300;
+const int kDefaultTransactionDuration = 300;
 
 class TransformInfo {
   /// The `width` of the `TransformerPageView`
@@ -39,7 +35,28 @@ class TransformInfo {
   /// The `index` of the widget pass to [PageTransformer.transform]
   final int index;
 
-  TransformInfo({this.index, this.position, this.width, this.height});
+  /// The `activeIndex` of the PageView
+  final int activeIndex;
+
+  /// The `activeIndex` of the PageView, from user start to swipe
+  /// It will change when user end drag
+  final int fromIndex;
+
+  ///
+  final bool forward;
+
+  /// User drag is done.
+  final bool done;
+
+  TransformInfo(
+      {this.index,
+      this.position,
+      this.width,
+      this.height,
+      this.activeIndex,
+      this.fromIndex,
+      this.forward,
+      this.done});
 }
 
 abstract class PageTransformer {
@@ -52,23 +69,18 @@ abstract class PageTransformer {
   Widget transform(Widget child, TransformInfo info);
 }
 
+typedef Widget PageTransformerBuilderCallback(Widget child, TransformInfo info);
 
-typedef Widget PageTransformerBuilderCallback(Widget child,TransformInfo info);
-
-class PageTransformerBuilder extends PageTransformer{
-
+class PageTransformerBuilder extends PageTransformer {
   final PageTransformerBuilderCallback builder;
 
-  PageTransformerBuilder({
-    bool reverse : false,
-
-    @required
-    this.builder
-}) : assert(builder!=null), super(reverse:reverse);
+  PageTransformerBuilder({bool reverse: false, @required this.builder})
+      : assert(builder != null),
+        super(reverse: reverse);
 
   @override
   Widget transform(Widget child, TransformInfo info) {
-    return builder(child,info);
+    return builder(child, info);
   }
 }
 
@@ -147,7 +159,7 @@ class TransformerPageView extends StatefulWidget {
   })  : assert(itemBuilder != null || transformer != null),
         this.reverse = transformer == null ? false : transformer.reverse,
         this.duration = duration ??
-            new Duration(milliseconds: kDefaultAutoplayTransactionDuration),
+            new Duration(milliseconds: kDefaultTransactionDuration),
         super(key: key);
 
   @override
@@ -161,6 +173,11 @@ class _TransformerPageViewState extends State<TransformerPageView>
   Size _size;
   int _activeIndex;
   PageController _pageController;
+  double _currentPixels = 0.0;
+  bool _done = false;
+
+  ///This value will not change until user end drag.
+  int _fromIndex = 0;
 
   PageTransformer _transformer;
 
@@ -204,10 +221,10 @@ class _TransformerPageViewState extends State<TransformerPageView>
         builder: (BuildContext c, Widget w) {
           int renderIndex = _getRenderIndex(index);
           Widget child;
-          if(widget.itemBuilder!=null){
+          if (widget.itemBuilder != null) {
             child = widget.itemBuilder(context, renderIndex);
           }
-          if(child==null){
+          if (child == null) {
             child = new Container();
           }
           if (_size == null) {
@@ -216,6 +233,8 @@ class _TransformerPageViewState extends State<TransformerPageView>
 
           double position;
 
+          double page = this.page;
+
           if (_transformer.reverse) {
             position = page - index;
           } else {
@@ -223,19 +242,16 @@ class _TransformerPageViewState extends State<TransformerPageView>
           }
           position *= widget.viewportFraction;
 
-          if (widget.curve != null) {
-            double t = widget.curve.transform(position.abs());
-            if (position < 0) {
-              t = -t;
-            }
-            position = t;
-          }
 
           TransformInfo info = new TransformInfo(
               index: renderIndex,
               width: _size.width,
               height: _size.height,
-              position: position);
+              position: position.clamp(-1.0, 1.0),
+              activeIndex: _getRenderIndex(_activeIndex),
+              fromIndex: _fromIndex,
+              forward: _pageController.position.pixels - _currentPixels >= 0,
+              done: _done);
           return _transformer.transform(child, info);
         });
   }
@@ -244,16 +260,30 @@ class _TransformerPageViewState extends State<TransformerPageView>
   Widget build(BuildContext context) {
     IndexedWidgetBuilder builder =
         _transformer == null ? _buildItemNormal : _buildItem;
-    return new PageView.builder(
-      itemBuilder: builder,
-      itemCount: _itemCount,
-      onPageChanged: _onIndexChanged,
-      controller: _pageController,
-      scrollDirection: widget.scrollDirection,
-      physics: widget.physics,
-      pageSnapping: widget.pageSnapping,
-      reverse: widget.reverse,
-    );
+    return new NotificationListener(
+        onNotification: (ScrollNotification notification) {
+          if (notification is ScrollStartNotification) {
+            _currentPixels = _getRenderIndex(_activeIndex) *
+                _pageController.position.viewportDimension;
+            _done = false;
+            _fromIndex = _activeIndex;
+          } else if (notification is ScrollEndNotification) {
+            _fromIndex = _activeIndex;
+            _done = true;
+          }
+
+          return false;
+        },
+        child: new PageView.builder(
+          itemBuilder: builder,
+          itemCount: _itemCount,
+          onPageChanged: _onIndexChanged,
+          controller: _pageController,
+          scrollDirection: widget.scrollDirection,
+          physics: widget.physics,
+          pageSnapping: widget.pageSnapping,
+          reverse: widget.reverse,
+        ));
   }
 
   void _onIndexChanged(int index) {

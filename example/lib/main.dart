@@ -39,7 +39,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
   IndexController _controller;
   List<String> _types = [
     "AccordionTransformer",
@@ -54,12 +53,6 @@ class _MyHomePageState extends State<MyHomePage> {
   FixedExtentScrollController controller;
 
   double _viewportFraction = 1.0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
 
   @override
   void initState() {
