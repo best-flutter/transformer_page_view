@@ -48,6 +48,12 @@ class TransformInfo {
   /// User drag is done.
   final bool done;
 
+  /// Same as [TransformerPageView.viewportFraction]
+  final double viewportFraction;
+
+  /// Copy from [TransformerPageView.scrollDirection]
+  final Axis scrollDirection;
+
   TransformInfo(
       {this.index,
       this.position,
@@ -56,7 +62,9 @@ class TransformInfo {
       this.activeIndex,
       this.fromIndex,
       this.forward,
-      this.done});
+      this.done,
+      this.viewportFraction,
+      this.scrollDirection});
 }
 
 abstract class PageTransformer {
@@ -158,8 +166,8 @@ class TransformerPageView extends StatefulWidget {
     @required this.itemCount,
   })  : assert(itemBuilder != null || transformer != null),
         this.reverse = transformer == null ? false : transformer.reverse,
-        this.duration = duration ??
-            new Duration(milliseconds: kDefaultTransactionDuration),
+        this.duration =
+            duration ?? new Duration(milliseconds: kDefaultTransactionDuration),
         super(key: key);
 
   @override
@@ -173,11 +181,11 @@ class _TransformerPageViewState extends State<TransformerPageView>
   Size _size;
   int _activeIndex;
   PageController _pageController;
-  double _currentPixels = 0.0;
+  double _currentPixels;
   bool _done = false;
 
   ///This value will not change until user end drag.
-  int _fromIndex = 0;
+  int _fromIndex;
 
   PageTransformer _transformer;
 
@@ -242,7 +250,6 @@ class _TransformerPageViewState extends State<TransformerPageView>
           }
           position *= widget.viewportFraction;
 
-
           TransformInfo info = new TransformInfo(
               index: renderIndex,
               width: _size.width,
@@ -251,9 +258,21 @@ class _TransformerPageViewState extends State<TransformerPageView>
               activeIndex: _getRenderIndex(_activeIndex),
               fromIndex: _fromIndex,
               forward: _pageController.position.pixels - _currentPixels >= 0,
-              done: _done);
+              done: _done,
+              scrollDirection: widget.scrollDirection,
+              viewportFraction: widget.viewportFraction);
           return _transformer.transform(child, info);
         });
+  }
+
+  double _calcCurrentPixels() {
+    _currentPixels = _getRenderIndex(_activeIndex) *
+        _pageController.position.viewportDimension *
+        widget.viewportFraction;
+
+    print("activeIndex:$_activeIndex , pix:$_currentPixels");
+
+    return _currentPixels;
   }
 
   @override
@@ -263,11 +282,11 @@ class _TransformerPageViewState extends State<TransformerPageView>
     return new NotificationListener(
         onNotification: (ScrollNotification notification) {
           if (notification is ScrollStartNotification) {
-            _currentPixels = _getRenderIndex(_activeIndex) *
-                _pageController.position.viewportDimension;
+            _calcCurrentPixels();
             _done = false;
             _fromIndex = _activeIndex;
           } else if (notification is ScrollEndNotification) {
+            _calcCurrentPixels();
             _fromIndex = _activeIndex;
             _done = true;
           }
@@ -293,6 +312,7 @@ class _TransformerPageViewState extends State<TransformerPageView>
   void _onGetSize(_) {
     RenderObject renderObject = context.findRenderObject();
     Size size = renderObject?.paintBounds?.size;
+    _calcCurrentPixels();
     onGetSize(size);
   }
 
@@ -317,23 +337,34 @@ class _TransformerPageViewState extends State<TransformerPageView>
     int initPage = _getInitPage();
     _itemCount = widget.loop ? widget.itemCount + kMaxValue : widget.itemCount;
     _pageController = new PageController(
-        initialPage: initPage, viewportFraction: widget.viewportFraction);
+        initialPage: initPage,
+        viewportFraction: widget.viewportFraction);
+    _fromIndex = _activeIndex = initPage;
 
-    _activeIndex = initPage;
     super.initState();
   }
+
 
   @override
   void didUpdateWidget(TransformerPageView oldWidget) {
     _transformer = widget.transformer;
     int initPage = _getInitPage();
     _itemCount = widget.loop ? widget.itemCount + kMaxValue : widget.itemCount;
-    if (_activeIndex != initPage ||
-        widget.viewportFraction != _pageController.viewportFraction) {
-      _activeIndex = initPage;
+    bool created = false;
+    if(widget.viewportFraction != _pageController.viewportFraction){
       _pageController = new PageController(
-          initialPage: initPage, viewportFraction: widget.viewportFraction);
+          initialPage: initPage,
+          viewportFraction: widget.viewportFraction);
+      created = true;
     }
+    if (_activeIndex != initPage ) {
+      _fromIndex = _activeIndex = initPage;
+      if(!created)
+        _pageController.animateToPage(initPage,duration: widget.duration,
+          curve: Curves.ease);
+
+    }
+
     WidgetsBinding.instance.addPostFrameCallback(_onGetSize);
     super.didUpdateWidget(oldWidget);
   }

@@ -34,7 +34,6 @@ class CustomPaintBuilder extends StatelessWidget {
   }
 }
 
-
 class ParallaxColor extends StatelessWidget {
   final Widget child;
 
@@ -67,7 +66,15 @@ class ParallaxColor extends StatelessWidget {
         if (info.forward) {
           if (index < colors.length - 1) {
             color = colors[index + 1].value & 0x00ffffff;
-            opacity = (position <= 0 ? -position : 1 - position);
+            opacity = (position <= 0
+                ? (-position / info.viewportFraction)
+                : 1 - position / info.viewportFraction);
+            if (opacity > 1) {
+              opacity -= 1.0;
+            }
+            if (opacity < 0) {
+              opacity += 1.0;
+            }
             alpha = (0xff * opacity).toInt();
 
             paint.color = new Color((alpha << 24) | color);
@@ -77,10 +84,15 @@ class ParallaxColor extends StatelessWidget {
         } else {
           if (index > 0) {
             color = colors[index - 1].value & 0x00ffffff;
-            opacity = position > 0
-                ? position
-                : 1 +
-                    position; //1-(position <=0 ? position.abs() : 1 - position);
+            opacity = (position > 0
+                ? position / info.viewportFraction
+                : (1 + position / info.viewportFraction));
+            if (opacity > 1) {
+              opacity -= 1.0;
+            }
+            if (opacity < 0) {
+              opacity += 1.0;
+            }
             alpha = (0xff * opacity).toInt();
 
             paint.color = new Color((alpha << 24) | color);
@@ -88,6 +100,8 @@ class ParallaxColor extends StatelessWidget {
                 new Rect.fromLTWH(0.0, 0.0, size.width, size.height), paint);
           }
         }
+
+        // print("opacity: $opacity, alpha $alpha position:$position forward:${info.forward} index:$index");
       },
       child: child,
     );

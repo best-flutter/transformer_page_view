@@ -73,7 +73,6 @@ class ZoomInPageTransformer extends PageTransformer {
   Widget transform(Widget child, TransformInfo info) {
     double position = info.position;
     double width = info.width;
-    double height = info.height;
     if (position > 0 && position <= 1) {
       return new Transform.translate(
         offset: new Offset(-width * position, 0.0),
