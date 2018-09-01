@@ -47,6 +47,10 @@ Almost the same as PageView.builder, simplely specify a `transformer` to `Transf
 
 ## Show cases
 
+### Parallax
+
+![Welcome view](https://github.com/jzoom/images/raw/master/welcome.gif)
+
 
 ### Basic
 
@@ -79,8 +83,6 @@ Almost the same as PageView.builder, simplely specify a `transformer` to `Transf
 >See code [here](https://github.com/jzoom/transformer_page_view/blob/master/example/lib/DepthPageTransformers.dart)
 
 
-
-### Parallax
 
 
 
