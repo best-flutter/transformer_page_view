@@ -270,7 +270,7 @@ class _TransformerPageViewState extends State<TransformerPageView>
         _pageController.position.viewportDimension *
         widget.viewportFraction;
 
-    print("activeIndex:$_activeIndex , pix:$_currentPixels");
+  //  print("activeIndex:$_activeIndex , pix:$_currentPixels");
 
     return _currentPixels;
   }
@@ -337,13 +337,11 @@ class _TransformerPageViewState extends State<TransformerPageView>
     int initPage = _getInitPage();
     _itemCount = widget.loop ? widget.itemCount + kMaxValue : widget.itemCount;
     _pageController = new PageController(
-        initialPage: initPage,
-        viewportFraction: widget.viewportFraction);
+        initialPage: initPage, viewportFraction: widget.viewportFraction);
     _fromIndex = _activeIndex = initPage;
 
     super.initState();
   }
-
 
   @override
   void didUpdateWidget(TransformerPageView oldWidget) {
@@ -351,18 +349,16 @@ class _TransformerPageViewState extends State<TransformerPageView>
     int initPage = _getInitPage();
     _itemCount = widget.loop ? widget.itemCount + kMaxValue : widget.itemCount;
     bool created = false;
-    if(widget.viewportFraction != _pageController.viewportFraction){
+    if (widget.viewportFraction != _pageController.viewportFraction) {
       _pageController = new PageController(
-          initialPage: initPage,
-          viewportFraction: widget.viewportFraction);
+          initialPage: initPage, viewportFraction: widget.viewportFraction);
       created = true;
     }
-    if (_activeIndex != initPage ) {
+    if (_activeIndex != initPage) {
       _fromIndex = _activeIndex = initPage;
-      if(!created)
-        _pageController.animateToPage(initPage,duration: widget.duration,
-          curve: Curves.ease);
-
+      if (!created)
+        _pageController.animateToPage(initPage,
+            duration: widget.duration, curve: Curves.ease);
     }
 
     WidgetsBinding.instance.addPostFrameCallback(_onGetSize);
