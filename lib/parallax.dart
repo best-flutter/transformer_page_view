@@ -3,38 +3,92 @@ import 'package:transformer_page_view/transformer_page_view.dart';
 
 typedef void PaintCallback(Canvas canvas, Size siz);
 
-class MyCustomPainter extends CustomPainter {
-  final PaintCallback callback;
+class ColorPainter extends CustomPainter {
 
-  MyCustomPainter({this.callback});
+  final Paint _paint;
+  final TransformInfo info;
+  final List<Color> colors;
+
+  ColorPainter(this._paint,this.info,this.colors);
 
   @override
   void paint(Canvas canvas, Size size) {
-    callback(canvas, size);
+    int index = info.fromIndex;
+    _paint.color = colors[index];
+    canvas.drawRect(
+        new Rect.fromLTWH(0.0, 0.0, size.width, size.height), _paint);
+    if (info.done) {
+      return;
+    }
+    int alpha;
+    int color;
+    double opacity;
+    double position = info.position;
+    if (info.forward) {
+      if (index < colors.length - 1) {
+        color = colors[index + 1].value & 0x00ffffff;
+        opacity = (position <= 0
+            ? (-position / info.viewportFraction)
+            : 1 - position / info.viewportFraction);
+        if (opacity > 1) {
+          opacity -= 1.0;
+        }
+        if (opacity < 0) {
+          opacity += 1.0;
+        }
+        alpha = (0xff * opacity).toInt();
+
+        _paint.color = new Color((alpha << 24) | color);
+        canvas.drawRect(
+            new Rect.fromLTWH(0.0, 0.0, size.width, size.height), _paint);
+      }
+    } else {
+      if (index > 0) {
+        color = colors[index - 1].value & 0x00ffffff;
+        opacity = (position > 0
+            ? position / info.viewportFraction
+            : (1 + position / info.viewportFraction));
+        if (opacity > 1) {
+          opacity -= 1.0;
+        }
+        if (opacity < 0) {
+          opacity += 1.0;
+        }
+        alpha = (0xff * opacity).toInt();
+
+        _paint.color = new Color((alpha << 24) | color);
+        canvas.drawRect(
+            new Rect.fromLTWH(0.0, 0.0, size.width, size.height), _paint);
+      }
+    }
   }
 
   @override
-  bool shouldRepaint(MyCustomPainter oldDelegate) {
-    return oldDelegate.callback != callback;
+  bool shouldRepaint(ColorPainter oldDelegate) {
+    return oldDelegate.info != info;
   }
 }
 
-class CustomPaintBuilder extends StatelessWidget {
-  final PaintCallback callback;
-  final Widget child;
 
-  CustomPaintBuilder(this.callback, {this.child});
+
+
+class _ParallaxColorState extends State<ParallaxColor>{
+
+  Paint paint = new Paint();
+
 
   @override
   Widget build(BuildContext context) {
     return new CustomPaint(
-      painter: new MyCustomPainter(callback: callback),
-      child: child,
+      painter: new ColorPainter(paint,widget.info,widget.colors),
+      child: widget.child,
     );
   }
+
+
 }
 
-class ParallaxColor extends StatelessWidget {
+class ParallaxColor extends StatefulWidget {
   final Widget child;
 
   final List<Color> colors;
@@ -48,64 +102,11 @@ class ParallaxColor extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    return new CustomPaintBuilder(
-      (Canvas canvas, Size size) {
-        Paint paint = new Paint();
-        int index = info.fromIndex;
-        paint.color = colors[index];
-        canvas.drawRect(
-            new Rect.fromLTWH(0.0, 0.0, size.width, size.height), paint);
-        if (info.done) {
-          return;
-        }
-        int alpha;
-        int color;
-        double opacity;
-        double position = info.position;
-        if (info.forward) {
-          if (index < colors.length - 1) {
-            color = colors[index + 1].value & 0x00ffffff;
-            opacity = (position <= 0
-                ? (-position / info.viewportFraction)
-                : 1 - position / info.viewportFraction);
-            if (opacity > 1) {
-              opacity -= 1.0;
-            }
-            if (opacity < 0) {
-              opacity += 1.0;
-            }
-            alpha = (0xff * opacity).toInt();
-
-            paint.color = new Color((alpha << 24) | color);
-            canvas.drawRect(
-                new Rect.fromLTWH(0.0, 0.0, size.width, size.height), paint);
-          }
-        } else {
-          if (index > 0) {
-            color = colors[index - 1].value & 0x00ffffff;
-            opacity = (position > 0
-                ? position / info.viewportFraction
-                : (1 + position / info.viewportFraction));
-            if (opacity > 1) {
-              opacity -= 1.0;
-            }
-            if (opacity < 0) {
-              opacity += 1.0;
-            }
-            alpha = (0xff * opacity).toInt();
-
-            paint.color = new Color((alpha << 24) | color);
-            canvas.drawRect(
-                new Rect.fromLTWH(0.0, 0.0, size.width, size.height), paint);
-          }
-        }
-
-        // print("opacity: $opacity, alpha $alpha position:$position forward:${info.forward} index:$index");
-      },
-      child: child,
-    );
+  State<StatefulWidget> createState() {
+    return new _ParallaxColorState();
   }
+
+
 }
 
 class ParallaxContainer extends StatelessWidget {

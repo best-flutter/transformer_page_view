@@ -1,5 +1,4 @@
 import 'package:example/buildin_transformers.dart';
-import 'package:example/images.dart';
 import 'package:flutter/material.dart';
 
 import 'package:transformer_page_view/transformer_page_view.dart';
@@ -88,22 +87,6 @@ class _MyHomePageState extends State<MyHomePage> {
     return new Scaffold(
       appBar: new AppBar(
         title: new Text(widget.title),
-        actions: <Widget>[
-          new Center(
-            child: new InkWell(
-              child: new Text("Images"),
-              onTap: (){
-                Navigator.of(context).push(new MaterialPageRoute(builder: (b){
-
-                  return new Scaffold(
-                    body: new ImageTest(),
-                  );
-
-                }));
-              },
-            ),
-          )
-        ],
       ),
       body: new Column(
         children: <Widget>[
@@ -159,19 +142,19 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           new Expanded(
               child: new SizedBox(
-            child: new TransformerPageView(
-                loop: true,
-                viewportFraction: _viewportFraction,
-                controller: _controller,
-                transformer: getTransformer(),
-                itemBuilder: (BuildContext context, int index) {
-                  return new Image.asset(
-                    images[index],
-                    fit: BoxFit.fill,
-                  );
-                },
-                itemCount: 3),
-          ))
+                child: new TransformerPageView(
+                    loop: true,
+                    viewportFraction: _viewportFraction,
+                    controller: _controller,
+                    transformer: getTransformer(),
+                    itemBuilder: (BuildContext context, int index) {
+                      return new Image.asset(
+                        images[index],
+                        fit: BoxFit.fill,
+                      );
+                    },
+                    itemCount: 3),
+              ))
         ],
       ),
     );

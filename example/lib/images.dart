@@ -37,7 +37,7 @@ List<String> images = ["assets/1.jpg", "assets/2.jpg", "assets/3.jpg"];
 List<String> text0 = ["春归何处。寂寞无行路", "春无踪迹谁知。除非问取黄鹂", "山色江声相与清，卷帘待得月华生"];
 List<String> text1 = ["若有人知春去处。唤取归来同住", "百啭无人能解，因风飞过蔷薇", "可怜一曲并船笛，说尽故人离别情。"];
 
-class TestWidget extends StatelessWidget {
+class ImageTest extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new TransformerPageView(
@@ -113,7 +113,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return new Scaffold(
       body: new Padding(
           padding: new EdgeInsets.fromLTRB(10.0, 40.0, 10.0, 30.0),
-          child: new TestWidget()),
+          child: new ImageTest()),
     );
   }
 }

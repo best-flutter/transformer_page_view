@@ -1,14 +1,23 @@
 library transformer_page_view;
 
 import 'package:flutter/widgets.dart';
-import 'dart:math' as Math;
 import 'package:transformer_page_view/index_controller.dart';
-import 'package:vector_math/vector_math_64.dart';
-
 export 'package:transformer_page_view/index_controller.dart';
 export 'package:transformer_page_view/parallax.dart';
 
-part 'transformers.dart';
+
+
+
+///
+/// NOTICE::
+///
+/// In order to make package smaller,currently we're not supporting any build-in page transformers
+/// You can find build in transforms here:
+///
+///
+///
+
+
 
 const int kMaxValue = 2000000000;
 const int kMiddleValue = 1000000000;
@@ -400,10 +409,19 @@ class _TransformerPageViewState extends State<TransformerPageView>
     return currentIndex;
   }
 
+  int _calcCorrectIndex(int index){
+
+
+
+  }
+
   @override
   void onChangeNotifier() {
     switch (widget.controller.event) {
       case IndexController.MOVE:
+        {
+          //_pageController.animateToPage(page, duration: null, curve: null)
+        }
         break;
       case IndexController.PREVIOUS:
         {
