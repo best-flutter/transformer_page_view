@@ -207,8 +207,15 @@ class _TransformerPageViewState extends State<TransformerPageView>
     }
     return _pageController.page;
   }
-
-  int _getRenderIndex(int index) {
+  int _getRealIndexFromRenderIndex(int index) {
+    int result =
+    widget.reverse ? (widget.itemCount - index - 1) : index;
+    if (widget.loop) {
+      result += kMiddleValue;
+    }
+    return result;
+  }
+  int _getRenderIndexFromRealIndex(int index) {
     int renderIndex;
     if (widget.loop) {
       renderIndex = index - kMiddleValue;
@@ -227,7 +234,7 @@ class _TransformerPageViewState extends State<TransformerPageView>
   }
 
   Widget _buildItemNormal(BuildContext context, int index) {
-    int renderIndex = _getRenderIndex(index);
+    int renderIndex = _getRenderIndexFromRealIndex(index);
     Widget child = widget.itemBuilder(context, renderIndex);
     return child;
   }
@@ -236,7 +243,7 @@ class _TransformerPageViewState extends State<TransformerPageView>
     return new AnimatedBuilder(
         animation: _pageController,
         builder: (BuildContext c, Widget w) {
-          int renderIndex = _getRenderIndex(index);
+          int renderIndex = _getRenderIndexFromRealIndex(index);
           Widget child;
           if (widget.itemBuilder != null) {
             child = widget.itemBuilder(context, renderIndex);
@@ -264,7 +271,7 @@ class _TransformerPageViewState extends State<TransformerPageView>
               width: _size.width,
               height: _size.height,
               position: position.clamp(-1.0, 1.0),
-              activeIndex: _getRenderIndex(_activeIndex),
+              activeIndex: _getRenderIndexFromRealIndex(_activeIndex),
               fromIndex: _fromIndex,
               forward: _pageController.position.pixels - _currentPixels >= 0,
               done: _done,
@@ -275,7 +282,7 @@ class _TransformerPageViewState extends State<TransformerPageView>
   }
 
   double _calcCurrentPixels() {
-    _currentPixels = _getRenderIndex(_activeIndex) *
+    _currentPixels = _getRenderIndexFromRealIndex(_activeIndex) *
         _pageController.position.viewportDimension *
         widget.viewportFraction;
 
@@ -331,19 +338,12 @@ class _TransformerPageViewState extends State<TransformerPageView>
     });
   }
 
-  int _getInitPage() {
-    int initPage =
-        widget.reverse ? (widget.itemCount - widget.index - 1) : widget.index;
-    if (widget.loop) {
-      initPage += kMiddleValue;
-    }
-    return initPage;
-  }
+
 
   @override
   void initState() {
     _transformer = widget.transformer;
-    int initPage = _getInitPage();
+    int initPage = _getRealIndexFromRenderIndex(widget.index);
     _itemCount = widget.loop ? widget.itemCount + kMaxValue : widget.itemCount;
     _pageController = new PageController(
         initialPage: initPage, viewportFraction: widget.viewportFraction);
@@ -355,7 +355,7 @@ class _TransformerPageViewState extends State<TransformerPageView>
   @override
   void didUpdateWidget(TransformerPageView oldWidget) {
     _transformer = widget.transformer;
-    int initPage = _getInitPage();
+    int initPage = _getRealIndexFromRenderIndex(widget.index);
     _itemCount = widget.loop ? widget.itemCount + kMaxValue : widget.itemCount;
     bool created = false;
     if (widget.viewportFraction != _pageController.viewportFraction) {
@@ -409,33 +409,34 @@ class _TransformerPageViewState extends State<TransformerPageView>
     return currentIndex;
   }
 
-  int _calcCorrectIndex(int index){
-
-
-
-  }
 
   @override
   void onChangeNotifier() {
-    switch (widget.controller.event) {
+    int event = widget.controller.event;
+    int index ;
+    switch (event) {
       case IndexController.MOVE:
         {
-          //_pageController.animateToPage(page, duration: null, curve: null)
+          index = _getRealIndexFromRenderIndex(widget.controller.index);
         }
         break;
       case IndexController.PREVIOUS:
-        {
-          _pageController.animateToPage(_calcNextIndex(false),
-              duration: widget.duration, curve: widget.curve ?? Curves.ease);
-        }
-
-        break;
       case IndexController.NEXT:
         {
-          _pageController.animateToPage(_calcNextIndex(true),
-              duration: widget.duration, curve: widget.curve ?? Curves.ease);
+          index = _calcNextIndex(event ==IndexController.NEXT );
         }
         break;
+      default:
+        throw new Exception("Not a valid event $event");
     }
+    if(widget.controller.animation){
+      _pageController.animateToPage(index,
+          duration: widget.duration, curve: widget.curve ?? Curves.ease)
+          .whenComplete(widget.controller.complete);
+    }else{
+      _pageController.jumpToPage(index);
+      widget.controller.complete();
+    }
+
   }
 }

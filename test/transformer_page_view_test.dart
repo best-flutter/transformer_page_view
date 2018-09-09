@@ -111,23 +111,28 @@ void main() {
 //    expect(find.text("0", skipOffstage: false), findsOneWidget);
 //  });
 //
-//  testWidgets('TransformerPageView controller', (WidgetTester tester) async {
-//    // Build our app and trigger a frame.
-//    IndexController controller = new IndexController();
-//
-//    await tester.pumpWidget(MaterialApp(
-//        home: new TransformerPageView(
-//            controller: controller,
-//            transformer: new DeepthPageTransformer(),
-//            itemBuilder: (context, index) {
-//              return Text("0");
-//            },
-//            itemCount: 10)));
-//
-//    expect(find.text("0", skipOffstage: false), findsOneWidget);
-//
-//    controller.move(0);
-//    controller.next();
-//    controller.previous();
-//  });
+  testWidgets('TransformerPageView controller', (WidgetTester tester) async {
+    // Build our app and trigger a frame.
+    IndexController controller = new IndexController();
+
+    await tester.pumpWidget(MaterialApp(
+        home: new TransformerPageView(
+            controller: controller,
+            itemBuilder: (context, index) {
+              print("===================build:$index");
+              return Text("$index");
+            },
+            itemCount: 10)));
+
+
+    expect(find.text("0"), findsOneWidget);
+    await controller.next(animation: false);
+
+    expect(find.text("0"), findsOneWidget);
+    await controller.previous(animation: false);
+    expect(find.text("0"), findsOneWidget);
+    await controller.move(2,animation: false);
+    expect(find.text("0"), findsOneWidget);
+
+  });
 }
