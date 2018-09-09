@@ -1,12 +1,12 @@
 
 <p align="center">
-    <a href="https://travis-ci.org/jzoom/transformer_page_view">
-        <img src="https://travis-ci.org/jzoom/transformer_page_view.svg?branch=master" alt="Build Status" />
+    <a href="https://travis-ci.org/best-flutter/transformer_page_view">
+        <img src="https://travis-ci.org/best-flutter/transformer_page_view.svg?branch=master" alt="Build Status" />
     </a>
-    <a href="https://coveralls.io/github/jzoom/transformer_page_view?branch=master">
-        <img src="https://coveralls.io/repos/github/jzoom/transformer_page_view/badge.svg?branch=master" alt="Coverage Status" />
+    <a href="https://coveralls.io/github/best-flutter/transformer_page_view?branch=master">
+        <img src="https://coveralls.io/repos/github/best-flutter/transformer_page_view/badge.svg?branch=master" alt="Coverage Status" />
     </a>
-    <a href="https://github.com/jzoom/transformer_page_view/pulls">
+    <a href="https://github.com/best-flutter/transformer_page_view/pulls">
         <img src="https://img.shields.io/badge/PRs-Welcome-brightgreen.svg" alt="PRs Welcome" />
     </a>
     <a href="https://pub.dartlang.org/packages/transformer_page_view">
@@ -49,38 +49,38 @@ Almost the same as PageView.builder, simplely specify a `transformer` to `Transf
 
 ### Parallax
 
-![Welcome view](https://github.com/jzoom/images/raw/master/welcome.gif)
+![Welcome view](https://github.com/best-flutter/images/raw/master/welcome.gif)
 
 
 ### Basic
 
-![AccordionTransformer](https://github.com/jzoom/images/raw/master/AccordionTransformer.gif)
+![AccordionTransformer](https://github.com/best-flutter/images/raw/master/AccordionTransformer.gif)
 
->See code [here](https://github.com/jzoom/transformer_page_view/blob/master/example/lib/AccordionTransformer.dart)
+>See code [here](https://github.com/best-flutter/transformer_page_view/blob/master/example/lib/AccordionTransformer.dart)
 
-![ThreeDTransformer](https://github.com/jzoom/images/raw/master/ThreeDTransformer.gif)
+![ThreeDTransformer](https://github.com/best-flutter/images/raw/master/ThreeDTransformer.gif)
 
->See code [here](https://github.com/jzoom/transformer_page_view/blob/master/example/lib/ThreeDTransformer.dart)
-
-
-![ScaleAndFadeTransformer](https://github.com/jzoom/images/raw/master/ScaleAndFadeTransformer.gif)
-
->See code [here](https://github.com/jzoom/transformer_page_view/blob/master/example/lib/ScaleAndFadeTransformers.dart)
+>See code [here](https://github.com/best-flutter/transformer_page_view/blob/master/example/lib/ThreeDTransformer.dart)
 
 
-![ZoomInPageTransformer](https://github.com/jzoom/images/raw/master/ZoomInPageTransformer.gif)
+![ScaleAndFadeTransformer](https://github.com/best-flutter/images/raw/master/ScaleAndFadeTransformer.gif)
 
->See code [here](https://github.com/jzoom/transformer_page_view/blob/master/example/lib/ZoomInPageTransformer.dart)
-
-
-![ZoomOutPageTransformer](https://github.com/jzoom/images/raw/master/ZoomOutPageTransformer.gif)
-
->See code [here](https://github.com/jzoom/transformer_page_view/blob/master/example/lib/ZoomOutPageTransformer.dart)
+>See code [here](https://github.com/best-flutter/transformer_page_view/blob/master/example/lib/ScaleAndFadeTransformers.dart)
 
 
-![DepthPageTransformer](https://github.com/jzoom/images/raw/master/DepthPageTransformer.gif)
+![ZoomInPageTransformer](https://github.com/best-flutter/images/raw/master/ZoomInPageTransformer.gif)
 
->See code [here](https://github.com/jzoom/transformer_page_view/blob/master/example/lib/DepthPageTransformers.dart)
+>See code [here](https://github.com/best-flutter/transformer_page_view/blob/master/example/lib/ZoomInPageTransformer.dart)
+
+
+![ZoomOutPageTransformer](https://github.com/best-flutter/images/raw/master/ZoomOutPageTransformer.gif)
+
+>See code [here](https://github.com/best-flutter/transformer_page_view/blob/master/example/lib/ZoomOutPageTransformer.dart)
+
+
+![DepthPageTransformer](https://github.com/best-flutter/images/raw/master/DepthPageTransformer.gif)
+
+>See code [here](https://github.com/best-flutter/transformer_page_view/blob/master/example/lib/DepthPageTransformers.dart)
 
 
 
