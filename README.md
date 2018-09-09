@@ -49,36 +49,36 @@ Almost the same as PageView.builder, simplely specify a `transformer` to `Transf
 
 ### Parallax
 
-![Welcome view](https://github.com/best-flutter/images/raw/master/welcome.gif)
+![Welcome view](https://github.com/jzoom/images/raw/master/welcome.gif)
 
 
 ### Basic
 
-![AccordionTransformer](https://github.com/best-flutter/images/raw/master/AccordionTransformer.gif)
+![AccordionTransformer](https://github.com/jzoom/images/raw/master/AccordionTransformer.gif)
 
 >See code [here](https://github.com/best-flutter/transformer_page_view/blob/master/example/lib/AccordionTransformer.dart)
 
-![ThreeDTransformer](https://github.com/best-flutter/images/raw/master/ThreeDTransformer.gif)
+![ThreeDTransformer](https://github.com/jzoom/images/raw/master/ThreeDTransformer.gif)
 
 >See code [here](https://github.com/best-flutter/transformer_page_view/blob/master/example/lib/ThreeDTransformer.dart)
 
 
-![ScaleAndFadeTransformer](https://github.com/best-flutter/images/raw/master/ScaleAndFadeTransformer.gif)
+![ScaleAndFadeTransformer](https://github.com/jzoom/images/raw/master/ScaleAndFadeTransformer.gif)
 
 >See code [here](https://github.com/best-flutter/transformer_page_view/blob/master/example/lib/ScaleAndFadeTransformers.dart)
 
 
-![ZoomInPageTransformer](https://github.com/best-flutter/images/raw/master/ZoomInPageTransformer.gif)
+![ZoomInPageTransformer](https://github.com/jzoom/images/raw/master/ZoomInPageTransformer.gif)
 
 >See code [here](https://github.com/best-flutter/transformer_page_view/blob/master/example/lib/ZoomInPageTransformer.dart)
 
 
-![ZoomOutPageTransformer](https://github.com/best-flutter/images/raw/master/ZoomOutPageTransformer.gif)
+![ZoomOutPageTransformer](https://github.com/jzoom/images/raw/master/ZoomOutPageTransformer.gif)
 
 >See code [here](https://github.com/best-flutter/transformer_page_view/blob/master/example/lib/ZoomOutPageTransformer.dart)
 
 
-![DepthPageTransformer](https://github.com/best-flutter/images/raw/master/DepthPageTransformer.gif)
+![DepthPageTransformer](https://github.com/jzoom/images/raw/master/DepthPageTransformer.gif)
 
 >See code [here](https://github.com/best-flutter/transformer_page_view/blob/master/example/lib/DepthPageTransformers.dart)
 
