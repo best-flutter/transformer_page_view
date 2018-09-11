@@ -295,6 +295,19 @@ class _TransformerPageViewState extends State<TransformerPageView>
   Widget build(BuildContext context) {
     IndexedWidgetBuilder builder =
         _transformer == null ? _buildItemNormal : _buildItem;
+    Widget child =  new PageView.builder(
+      itemBuilder: builder,
+      itemCount: _itemCount,
+      onPageChanged: _onIndexChanged,
+      controller: _pageController,
+      scrollDirection: widget.scrollDirection,
+      physics: widget.physics,
+      pageSnapping: widget.pageSnapping,
+      reverse: widget.reverse,
+    );
+    if(_transformer == null){
+      return child;
+    }
     return new NotificationListener(
         onNotification: (ScrollNotification notification) {
           if (notification is ScrollStartNotification) {
@@ -309,16 +322,7 @@ class _TransformerPageViewState extends State<TransformerPageView>
 
           return false;
         },
-        child: new PageView.builder(
-          itemBuilder: builder,
-          itemCount: _itemCount,
-          onPageChanged: _onIndexChanged,
-          controller: _pageController,
-          scrollDirection: widget.scrollDirection,
-          physics: widget.physics,
-          pageSnapping: widget.pageSnapping,
-          reverse: widget.reverse,
-        ));
+        child:child);
   }
 
   void _onIndexChanged(int index) {
