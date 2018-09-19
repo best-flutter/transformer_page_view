@@ -53,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   String _type;
   FixedExtentScrollController controller;
-
+  int _index = 0;
   double _viewportFraction = 1.0;
 
   @override
@@ -161,9 +161,15 @@ class _MyHomePageState extends State<MyHomePage> {
               child: new SizedBox(
             child: new TransformerPageView(
                 loop: true,
+                index:_index,
                 viewportFraction: _viewportFraction,
                 controller: _controller,
                 transformer: getTransformer(),
+                onPageChanged: (int index){
+                  setState(() {
+                    _index = index;
+                  });
+                },
                 itemBuilder: (BuildContext context, int index) {
                   return new Image.asset(
                     images[index],

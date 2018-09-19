@@ -130,8 +130,10 @@ class TransformerPageView extends StatefulWidget {
 
   final int itemCount;
 
+  /// If not set, it is controlled by this widget.
   final int index;
 
+  // See [IndexController.mode],[IndexController.next],[IndexController.previous]
   final IndexController controller;
 
   final double viewportFraction;
@@ -160,9 +162,9 @@ class TransformerPageView extends StatefulWidget {
   /// zero and less than [itemCount].
   TransformerPageView({
     Key key,
-    this.index: 0,
+    this.index,
     Duration duration,
-    this.curve,
+    this.curve : Curves.ease,
     this.viewportFraction: 1.0,
     this.loop: false,
     this.scrollDirection = Axis.horizontal,
@@ -327,6 +329,9 @@ class _TransformerPageViewState extends State<TransformerPageView>
 
   void _onIndexChanged(int index) {
     _activeIndex = index;
+    if(widget.onPageChanged!=null){
+      widget.onPageChanged(_getRenderIndexFromRealIndex(index));
+    }
   }
 
   void _onGetSize(_) {
@@ -347,7 +352,8 @@ class _TransformerPageViewState extends State<TransformerPageView>
   @override
   void initState() {
     _transformer = widget.transformer;
-    int initPage = _getRealIndexFromRenderIndex(widget.index);
+    int index = widget.index ?? 0;
+    int initPage = _getRealIndexFromRenderIndex(index);
     _itemCount = widget.loop ? widget.itemCount + kMaxValue : widget.itemCount;
     _pageController = new PageController(
         initialPage: initPage, viewportFraction: widget.viewportFraction);
@@ -359,7 +365,8 @@ class _TransformerPageViewState extends State<TransformerPageView>
   @override
   void didUpdateWidget(TransformerPageView oldWidget) {
     _transformer = widget.transformer;
-    int initPage = _getRealIndexFromRenderIndex(widget.index);
+    int index = widget.index ?? 0;
+    int initPage = _getRealIndexFromRenderIndex(index);
     _itemCount = widget.loop ? widget.itemCount + kMaxValue : widget.itemCount;
     bool created = false;
     if (widget.viewportFraction != _pageController.viewportFraction) {
@@ -367,11 +374,11 @@ class _TransformerPageViewState extends State<TransformerPageView>
           initialPage: initPage, viewportFraction: widget.viewportFraction);
       created = true;
     }
-    if (_activeIndex != initPage) {
+    if (_getRenderIndexFromRealIndex(_activeIndex) != index) {
       _fromIndex = _activeIndex = initPage;
-      if (!created)
+      if (!created);
         _pageController.animateToPage(initPage,
-            duration: widget.duration, curve: Curves.ease);
+            duration: widget.duration, curve: widget.curve);
     }
 
     WidgetsBinding.instance.addPostFrameCallback(_onGetSize);
