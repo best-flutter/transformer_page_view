@@ -3,9 +3,6 @@
     <a href="https://travis-ci.org/best-flutter/transformer_page_view">
         <img src="https://travis-ci.org/best-flutter/transformer_page_view.svg?branch=master" alt="Build Status" />
     </a>
-    <a href="https://coveralls.io/github/best-flutter/transformer_page_view?branch=master">
-        <img src="https://coveralls.io/repos/github/best-flutter/transformer_page_view/badge.svg?branch=master" alt="Coverage Status" />
-    </a>
     <a href="https://github.com/best-flutter/transformer_page_view/pulls">
         <img src="https://img.shields.io/badge/PRs-Welcome-brightgreen.svg" alt="PRs Welcome" />
     </a>
@@ -90,9 +87,7 @@ Almost the same as PageView.builder, simplely specify a `transformer` to `Transf
 
 - [Installation](#installation)
 - [Basic Usage](#basic-usage)
-- [Properties](#properties)
-- [Build in animations](#build-in-animations)
-- [Custom animation](#custom-animation)
+- [How to create my owen animation](#custom-animation)
 
 
 ### Installation
@@ -110,4 +105,22 @@ to your pubspec.yaml ,and run
 flutter packages get 
 ```
 in your project's root directory.
+
+
+### Basic Usage
+
+
+| Parameter  | Default   | Description |
+| :------------ |:---------------:| :-----|
+| scrollDirection | Axis.horizontal  | If `Axis.horizontal`, the scroll view's children are arranged horizontally in a row instead of vertically in a column. |
+| loop | false |Set to `true` to enable continuous loop mode. |
+| index | none |  Index number of initial slide. if not set , it is controlled by the widget itself,otherwise, it is controlled by another widget|
+| onPageChanged | void onPageChanged(int index)  | Called with the new index when the user swiped |
+| duration | new Duration(milliseconds:300) | The milliseconds of every transaction animation costs  |
+| transformer | none | The most important property of this widget, it returns a `transformed` widget that based on the widget parameter. If the value is null, a `itemBuilder` must be specified |
+| itemCount | none | Number of the total items  |
+| itemBuilder | none | A function that returns a widget based on index,if it's null,a `transformer` must be specified |
+
+### How to create my owen animation
+
 

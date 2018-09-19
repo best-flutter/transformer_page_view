@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_driver/flutter_driver.dart' as driver;
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:transformer_page_view/transformer_page_view.dart';
@@ -118,6 +118,7 @@ void main() {
     await tester.pumpWidget(MaterialApp(
         home: new TransformerPageView(
             controller: controller,
+            transformer: new FackTransformer(),
             itemBuilder: (context, index) {
               print("===================build:$index");
               return Text("$index");
@@ -135,4 +136,14 @@ void main() {
     expect(find.text("0"), findsOneWidget);
 
   });
+
+
+
+}
+class FackTransformer extends PageTransformer {
+  @override
+  Widget transform(Widget child, TransformInfo info) {
+
+    return child;
+  }
 }

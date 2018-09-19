@@ -381,13 +381,15 @@ class _TransformerPageViewState extends State<TransformerPageView>
             duration: widget.duration, curve: widget.curve);
     }
 
-    WidgetsBinding.instance.addPostFrameCallback(_onGetSize);
+    if(_transformer!=null)
+      WidgetsBinding.instance.addPostFrameCallback(_onGetSize);
     super.didUpdateWidget(oldWidget);
   }
 
   @override
   void didChangeDependencies() {
-    WidgetsBinding.instance.addPostFrameCallback(_onGetSize);
+    if(_transformer!=null)
+      WidgetsBinding.instance.addPostFrameCallback(_onGetSize);
     super.didChangeDependencies();
   }
 
