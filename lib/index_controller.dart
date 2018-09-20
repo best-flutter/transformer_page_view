@@ -81,6 +81,8 @@ class IndexController extends ChangeNotifier {
   }
 
   void complete(){
-    _completer.complete();
+    if(! _completer.isCompleted){
+      _completer.complete();
+    }
   }
 }

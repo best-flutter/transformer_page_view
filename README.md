@@ -88,8 +88,8 @@ Almost the same as PageView.builder, simplely specify a `transformer` to `Transf
 
 - [Installation](#installation)
 - [Basic Usage](#basic-usage)
-- [Build-in Parallax](#custom-animation)
-- [How to create my owen animation](#custom-animation)
+- [Build-in Parallax](#build-in-parallax)
+- [Custom animation](#custom-animation)
 
 
 ### Installation
@@ -148,7 +148,7 @@ Inspired by [page-transformer](https://github.com/roughike/page-transformer), an
 
 >See code [here](https://github.com/best-flutter/transformer_page_view/blob/master/example/lib/images.dart)
 
-### How to create my owen animation
+### Custom animation
 
 
 
