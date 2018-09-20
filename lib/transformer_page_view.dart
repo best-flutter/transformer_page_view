@@ -440,7 +440,8 @@ class _TransformerPageViewState extends State<TransformerPageView>
         }
         break;
       default:
-        throw new Exception("Not a valid event $event");
+        //ignore this event
+        return;
     }
     if(widget.controller.animation){
       _pageController.animateToPage(index,
