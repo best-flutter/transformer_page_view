@@ -48,7 +48,6 @@ class IndexController extends ChangeNotifier {
   static const int PREVIOUS = -1;
   static const int MOVE = 0;
 
-
   Completer _completer;
 
   int index;
@@ -80,8 +79,8 @@ class IndexController extends ChangeNotifier {
     return _completer.future;
   }
 
-  void complete(){
-    if(! _completer.isCompleted){
+  void complete() {
+    if (!_completer.isCompleted) {
       _completer.complete();
     }
   }

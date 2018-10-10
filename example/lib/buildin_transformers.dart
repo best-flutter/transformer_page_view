@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:transformer_page_view/transformer_page_view.dart';
 import 'dart:math' as Math;
@@ -45,7 +43,6 @@ class ThreeDTransformer extends PageTransformer {
     );
   }
 }
-
 
 class ZoomInPageTransformer extends PageTransformer {
   static const double ZOOM_MAX = 0.5;

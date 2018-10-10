@@ -4,12 +4,11 @@ import 'package:transformer_page_view/transformer_page_view.dart';
 typedef void PaintCallback(Canvas canvas, Size siz);
 
 class ColorPainter extends CustomPainter {
-
   final Paint _paint;
   final TransformInfo info;
   final List<Color> colors;
 
-  ColorPainter(this._paint,this.info,this.colors);
+  ColorPainter(this._paint, this.info, this.colors);
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -69,23 +68,16 @@ class ColorPainter extends CustomPainter {
   }
 }
 
-
-
-
-class _ParallaxColorState extends State<ParallaxColor>{
-
+class _ParallaxColorState extends State<ParallaxColor> {
   Paint paint = new Paint();
-
 
   @override
   Widget build(BuildContext context) {
     return new CustomPaint(
-      painter: new ColorPainter(paint,widget.info,widget.colors),
+      painter: new ColorPainter(paint, widget.info, widget.colors),
       child: widget.child,
     );
   }
-
-
 }
 
 class ParallaxColor extends StatefulWidget {
@@ -105,8 +97,6 @@ class ParallaxColor extends StatefulWidget {
   State<StatefulWidget> createState() {
     return new _ParallaxColorState();
   }
-
-
 }
 
 class ParallaxContainer extends StatelessWidget {

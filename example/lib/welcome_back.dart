@@ -84,17 +84,23 @@ class Welcome extends StatelessWidget {
                   opacityFactor: 1.0,
                   translationFactor: 400.0,
                 )),
-                new ParallaxContainer(child: new Text(
-                  titles[info.index],
-                  style: new TextStyle(fontSize: 30.0, color: Colors.white),
-                  textAlign: TextAlign.center,
-                ), position: info.position,translationFactor: 100.0,),
-                new ParallaxContainer(child: new Padding(
-                    padding: new EdgeInsets.fromLTRB(40.0, 30.0, 40.0, 50.0),
-                    child: new Text(subtitles[info.index],
-                        textAlign: TextAlign.center,
-                        style: new TextStyle(
-                            fontSize: 13.0, color: Colors.white))), position: info.position,
+                new ParallaxContainer(
+                  child: new Text(
+                    titles[info.index],
+                    style: new TextStyle(fontSize: 30.0, color: Colors.white),
+                    textAlign: TextAlign.center,
+                  ),
+                  position: info.position,
+                  translationFactor: 100.0,
+                ),
+                new ParallaxContainer(
+                  child: new Padding(
+                      padding: new EdgeInsets.fromLTRB(40.0, 30.0, 40.0, 50.0),
+                      child: new Text(subtitles[info.index],
+                          textAlign: TextAlign.center,
+                          style: new TextStyle(
+                              fontSize: 13.0, color: Colors.white))),
+                  position: info.position,
                   translationFactor: 50.0,
                 ),
               ],

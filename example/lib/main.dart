@@ -1,11 +1,12 @@
 import 'package:example/buildin_transformers.dart';
 import 'package:example/images.dart';
+import 'package:example/welcome.dart';
 import 'package:flutter/material.dart';
 
 import 'package:transformer_page_view/transformer_page_view.dart';
 
 import 'package:flutter/cupertino.dart';
-
+import 'dart:math' as Math;
 // 1111111 !!!!!!
 
 void main() => runApp(new MyApp());
@@ -88,25 +89,49 @@ class _MyHomePageState extends State<MyHomePage> {
     return new Scaffold(
       appBar: new AppBar(
         title: new Text(widget.title),
-        actions: <Widget>[
-          new Center(
-            child: new InkWell(
-              child: new Text("Images"),
-              onTap: (){
-                Navigator.of(context).push(new MaterialPageRoute(builder: (b){
-
-                  return new Scaffold(
-                    body: new ImageTest(),
-                  );
-
-                }));
-              },
-            ),
-          )
-        ],
       ),
       body: new Column(
         children: <Widget>[
+          new Wrap(
+            children: <Widget>[
+              new RaisedButton(
+                onPressed: () {
+                  _controller.move(new Math.Random().nextInt(5));
+                },
+                color: Colors.blue,
+                child: new Text("Random"),
+              ),
+              new RaisedButton(
+                onPressed: () {
+                  Navigator.of(context)
+                      .push(new MaterialPageRoute(builder: (b) {
+                    return new Scaffold(
+                      appBar: new AppBar(
+                        title: new Text("images"),
+                      ),
+                      body: new ImageTest(),
+                    );
+                  }));
+                },
+                color: Colors.blue,
+                child: new Text("Image"),
+              ),
+              new RaisedButton(
+                onPressed: () {
+                  Navigator.of(context)
+                      .push(new MaterialPageRoute(builder: (b) {
+                    return new Scaffold(
+                        appBar: new AppBar(
+                          title: new Text("welcome"),
+                        ),
+                        body: new Welcome(0));
+                  }));
+                },
+                color: Colors.blue,
+                child: new Text("Welcome"),
+              ),
+            ],
+          ),
           new Row(
             children: <Widget>[
               new RaisedButton(
@@ -153,7 +178,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       });
                 },
                 color: Colors.blue,
-                child: new Text("Change Animation"),
+                child: new Text("Animation"),
               ),
             ],
           ),
@@ -161,11 +186,11 @@ class _MyHomePageState extends State<MyHomePage> {
               child: new SizedBox(
             child: new TransformerPageView(
                 loop: true,
-                index:_index,
+                index: _index,
                 viewportFraction: _viewportFraction,
                 controller: _controller,
                 transformer: getTransformer(),
-                onPageChanged: (int index){
+                onPageChanged: (int index) {
                   setState(() {
                     _index = index;
                   });

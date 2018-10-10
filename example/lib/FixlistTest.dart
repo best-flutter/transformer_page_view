@@ -142,19 +142,19 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           new Expanded(
               child: new SizedBox(
-                child: new TransformerPageView(
-                    loop: true,
-                    viewportFraction: _viewportFraction,
-                    controller: _controller,
-                    transformer: getTransformer(),
-                    itemBuilder: (BuildContext context, int index) {
-                      return new Image.asset(
-                        images[index],
-                        fit: BoxFit.fill,
-                      );
-                    },
-                    itemCount: 3),
-              ))
+            child: new TransformerPageView(
+                loop: true,
+                viewportFraction: _viewportFraction,
+                controller: _controller,
+                transformer: getTransformer(),
+                itemBuilder: (BuildContext context, int index) {
+                  return new Image.asset(
+                    images[index],
+                    fit: BoxFit.fill,
+                  );
+                },
+                itemCount: 3),
+          ))
         ],
       ),
     );

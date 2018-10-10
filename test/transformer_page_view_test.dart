@@ -125,25 +125,20 @@ void main() {
             },
             itemCount: 10)));
 
-
     expect(find.text("0"), findsOneWidget);
     await controller.next(animation: false);
 
     expect(find.text("0"), findsOneWidget);
     await controller.previous(animation: false);
     expect(find.text("0"), findsOneWidget);
-    await controller.move(2,animation: false);
+    await controller.move(2, animation: false);
     expect(find.text("0"), findsOneWidget);
-
   });
-
-
-
 }
+
 class FackTransformer extends PageTransformer {
   @override
   Widget transform(Widget child, TransformInfo info) {
-
     return child;
   }
 }
