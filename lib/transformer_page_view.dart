@@ -266,7 +266,8 @@ class TransformerPageView extends StatefulWidget {
     this.itemBuilder,
     this.pageController,
     @required this.itemCount,
-  })  : assert(itemBuilder != null || transformer != null),
+  })  :assert(itemCount!=null),
+        assert(itemCount == 0 || itemBuilder != null || transformer != null),
         this.duration =
             duration ?? new Duration(milliseconds: kDefaultTransactionDuration),
         super(key: key);
@@ -541,6 +542,15 @@ class _TransformerPageViewState extends State<TransformerPageView>
         currentIndex--;
       }
     }
+
+    if(!_pageController.loop){
+      if(currentIndex >= _pageController.itemCount){
+        currentIndex = 0;
+      }else if(currentIndex < 0){
+        currentIndex = _pageController.itemCount - 1;
+      }
+    }
+
     return currentIndex;
   }
 

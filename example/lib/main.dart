@@ -130,6 +130,20 @@ class _MyHomePageState extends State<MyHomePage> {
                 color: Colors.blue,
                 child: new Text("Welcome"),
               ),
+              new RaisedButton(
+                onPressed: () {
+                  Navigator.of(context)
+                      .push(new MaterialPageRoute(builder: (b) {
+                    return new Scaffold(
+                        appBar: new AppBar(
+                          title: new Text("welcome"),
+                        ),
+                        body: new TransformerPageView(itemCount: 0));
+                  }));
+                },
+                color: Colors.blue,
+                child: new Text("Zero"),
+              ),
             ],
           ),
           new Row(
@@ -185,11 +199,12 @@ class _MyHomePageState extends State<MyHomePage> {
           new Expanded(
               child: new SizedBox(
             child: new TransformerPageView(
-                loop: true,
+                loop: false,
                 index: _index,
                 viewportFraction: _viewportFraction,
                 controller: _controller,
                 transformer: getTransformer(),
+
                 onPageChanged: (int index) {
                   setState(() {
                     _index = index;
