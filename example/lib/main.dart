@@ -204,7 +204,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 viewportFraction: _viewportFraction,
                 controller: _controller,
                 transformer: getTransformer(),
-
                 onPageChanged: (int index) {
                   setState(() {
                     _index = index;

@@ -16,21 +16,20 @@ void main() {
 
     expect(find.text("0", skipOffstage: false), findsOneWidget);
   });
-  testWidgets('Zero item count ',
-          (WidgetTester tester) async {
-        // Build our app and trigger a frame.
-        await tester.pumpWidget(MaterialApp(
-            home: new TransformerPageView(
-                transformer: new PageTransformerBuilder(
-                    builder: (Widget child, TransformInfo info) {
-                      return new Container(
-                        child: new Text("0"),
-                      );
-                    }),
-                itemCount: 0)));
+  testWidgets('Zero item count ', (WidgetTester tester) async {
+    // Build our app and trigger a frame.
+    await tester.pumpWidget(MaterialApp(
+        home: new TransformerPageView(
+            transformer: new PageTransformerBuilder(
+                builder: (Widget child, TransformInfo info) {
+              return new Container(
+                child: new Text("0"),
+              );
+            }),
+            itemCount: 0)));
 
-         expect(find.text("0", skipOffstage: false), findsNothing);
-      });
+    expect(find.text("0", skipOffstage: false), findsNothing);
+  });
   testWidgets('TransformerPageView transformer only',
       (WidgetTester tester) async {
     // Build our app and trigger a frame.
