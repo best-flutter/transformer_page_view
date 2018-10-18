@@ -119,11 +119,13 @@ class TransformerPageController extends PageController {
   }
 
   int getRealItemCount() {
+    if (itemCount == 0) return 0;
     return loop ? itemCount + kMaxValue : itemCount;
   }
 
   static _getRenderIndexFromRealIndex(
       num index, bool loop, int itemCount, bool reverse) {
+    if (itemCount == 0) return 0;
     int renderIndex;
     if (loop) {
       renderIndex = index - kMiddleValue;

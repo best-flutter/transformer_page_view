@@ -1,6 +1,7 @@
 import 'package:example/buildin_transformers.dart';
 import 'package:example/images.dart';
 import 'package:example/welcome.dart';
+import 'package:example/zero.dart';
 import 'package:flutter/material.dart';
 
 import 'package:transformer_page_view/transformer_page_view.dart';
@@ -134,11 +135,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 onPressed: () {
                   Navigator.of(context)
                       .push(new MaterialPageRoute(builder: (b) {
-                    return new Scaffold(
-                        appBar: new AppBar(
-                          title: new Text("welcome"),
-                        ),
-                        body: new TransformerPageView(itemCount: 0));
+                    return new Zero();
                   }));
                 },
                 color: Colors.blue,

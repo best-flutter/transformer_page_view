@@ -1,4 +1,7 @@
-## [0.1.2] - [2018.10.18]
+## [0.1.4] - [2018.10.19]
+    * Fix display items when itemCount changes
+
+## [0.1.3] - [2018.10.18]
     * Fix zero item count
 
 ## [0.1.1] - [2018.10.10]
