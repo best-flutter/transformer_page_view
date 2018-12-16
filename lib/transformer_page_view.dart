@@ -471,6 +471,7 @@ class _TransformerPageViewState extends State<TransformerPageView>
     _pageController = widget.pageController;
     if (_pageController == null) {
       _pageController = new TransformerPageController(
+          viewportFraction: widget.viewportFraction,
           initialPage: widget.index,
           itemCount: widget.itemCount,
           loop: widget.loop,
@@ -495,6 +496,7 @@ class _TransformerPageViewState extends State<TransformerPageView>
       } else {
         created = true;
         _pageController = new TransformerPageController(
+            viewportFraction: widget.viewportFraction,
             initialPage: widget.index,
             itemCount: widget.itemCount,
             loop: widget.loop,
