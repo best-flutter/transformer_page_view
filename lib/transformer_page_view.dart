@@ -402,7 +402,7 @@ class _TransformerPageViewState extends State<TransformerPageView>
 
   double _calcCurrentPixels() {
     _currentPixels = _pageController.getRenderIndexFromRealIndex(_activeIndex) *
-        _pageController.position.viewportDimension *
+        (_pageController.hasClients ? _pageController.position.viewportDimension : 0) *
         widget.viewportFraction;
 
     //  print("activeIndex:$_activeIndex , pix:$_currentPixels");
@@ -506,7 +506,7 @@ class _TransformerPageViewState extends State<TransformerPageView>
 
     if (_pageController.getRenderIndexFromRealIndex(_activeIndex) != index) {
       _fromIndex = _activeIndex = _pageController.initialPage;
-      if (!created) {
+      if (!created && _pageController.hasClients) {
         int initPage = _pageController.getRealIndexFromRenderIndex(index);
         _pageController.animateToPage(initPage,
             duration: widget.duration, curve: widget.curve);
