@@ -338,7 +338,7 @@ class TransformerPageView extends StatefulWidget {
 }
 
 class _TransformerPageViewState extends State<TransformerPageView>
-    with ChangeNotifierMixin<TransformerPageView> {
+    with ChangeNotifierMixin {
   Size _size;
   int _activeIndex;
   double _currentPixels;
@@ -356,6 +356,8 @@ class _TransformerPageViewState extends State<TransformerPageView>
     Widget child = widget.itemBuilder(context, renderIndex);
     return child;
   }
+
+
 
   Widget _buildItem(BuildContext context, int index) {
     return new AnimatedBuilder(
@@ -481,6 +483,10 @@ class _TransformerPageViewState extends State<TransformerPageView>
     // _pageController = new PageController(initialPage: initPage,viewportFraction: widget.viewportFraction);
     _fromIndex = _activeIndex = _pageController.initialPage;
 
+    _controller = getNotifier();
+    if (_controller != null) {
+      _controller.addListener(onChangeNotifier);
+    }
     super.initState();
   }
 
@@ -514,6 +520,16 @@ class _TransformerPageViewState extends State<TransformerPageView>
     }
     if (_transformer != null)
       WidgetsBinding.instance.addPostFrameCallback(_onGetSize);
+
+    if (_controller != getNotifier()) {
+      if (_controller != null) {
+        _controller.removeListener(onChangeNotifier);
+      }
+      _controller = getNotifier();
+      if (_controller != null) {
+        _controller.addListener(onChangeNotifier);
+      }
+    }
     super.didUpdateWidget(oldWidget);
   }
 
@@ -587,4 +603,19 @@ class _TransformerPageViewState extends State<TransformerPageView>
       widget.controller.complete();
     }
   }
+
+
+  ChangeNotifier _controller;
+
+
+
+  void dispose() {
+    super.dispose();
+    if (_controller != null) {
+      _controller.removeListener(onChangeNotifier);
+    }
+  }
+
+
+
 }
