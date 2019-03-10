@@ -337,8 +337,7 @@ class TransformerPageView extends StatefulWidget {
   }
 }
 
-class _TransformerPageViewState extends State<TransformerPageView>
-    with ChangeNotifierMixin {
+class _TransformerPageViewState extends State<TransformerPageView> {
   Size _size;
   int _activeIndex;
   double _currentPixels;
@@ -356,8 +355,6 @@ class _TransformerPageViewState extends State<TransformerPageView>
     Widget child = widget.itemBuilder(context, renderIndex);
     return child;
   }
-
-
 
   Widget _buildItem(BuildContext context, int index) {
     return new AnimatedBuilder(
@@ -454,8 +451,18 @@ class _TransformerPageViewState extends State<TransformerPageView>
   }
 
   void _onGetSize(_) {
+    Size size;
+    if (context == null) {
+      onGetSize(size);
+      return;
+    }
     RenderObject renderObject = context.findRenderObject();
-    Size size = renderObject?.paintBounds?.size;
+    if (renderObject != null) {
+      Rect bounds = renderObject.paintBounds;
+      if (bounds != null) {
+        size = bounds.size;
+      }
+    }
     _calcCurrentPixels();
     onGetSize(size);
   }
@@ -540,7 +547,6 @@ class _TransformerPageViewState extends State<TransformerPageView>
     super.didChangeDependencies();
   }
 
-  @override
   ChangeNotifier getNotifier() {
     return widget.controller;
   }
@@ -572,7 +578,6 @@ class _TransformerPageViewState extends State<TransformerPageView>
     return currentIndex;
   }
 
-  @override
   void onChangeNotifier() {
     int event = widget.controller.event;
     int index;
@@ -604,10 +609,7 @@ class _TransformerPageViewState extends State<TransformerPageView>
     }
   }
 
-
   ChangeNotifier _controller;
-
-
 
   void dispose() {
     super.dispose();
@@ -615,7 +617,4 @@ class _TransformerPageViewState extends State<TransformerPageView>
       _controller.removeListener(onChangeNotifier);
     }
   }
-
-
-
 }

@@ -3,10 +3,6 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 
-abstract class ChangeNotifierMixin {
-
-}
-
 class IndexController extends ChangeNotifier {
   static const int NEXT = 1;
   static const int PREVIOUS = -1;

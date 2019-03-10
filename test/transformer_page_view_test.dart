@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_driver/flutter_driver.dart' as driver;
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:transformer_page_view/transformer_page_view.dart';

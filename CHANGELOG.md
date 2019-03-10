@@ -1,3 +1,7 @@
+## [0.1.5] - [2019.03.10]
+
+    * Fix findRenderObject is null
+
 ## [0.1.4] - [2018.10.19]
     * Fix display items when itemCount changes
 

@@ -1,5 +1,6 @@
 import 'package:example/buildin_transformers.dart';
 import 'package:example/images.dart';
+import 'package:example/screens/ProductListView.dart';
 import 'package:example/welcome.dart';
 import 'package:example/zero.dart';
 import 'package:flutter/material.dart';
@@ -90,6 +91,16 @@ class _MyHomePageState extends State<MyHomePage> {
     return new Scaffold(
       appBar: new AppBar(
         title: new Text(widget.title),
+        actions: <Widget>[
+          new InkWell(
+            child: new Text("route"),
+            onTap: () {
+              Navigator.push(context, new MaterialPageRoute(builder: (c) {
+                return new ProductListView();
+              }));
+            },
+          )
+        ],
       ),
       body: new Column(
         children: <Widget>[
