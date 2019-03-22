@@ -33,7 +33,7 @@
         <entry key="convert">
           <value>
             <list>
-              <option value="$USER_HOME$/working/flutter/.pub-cache/hosted/pub.flutter-io.cn/convert-2.0.2/lib" />
+              <option value="$USER_HOME$/working/flutter/.pub-cache/hosted/pub.flutter-io.cn/convert-2.1.1/lib" />
             </list>
           </value>
         </entry>
@@ -54,7 +54,7 @@
         <entry key="file">
           <value>
             <list>
-              <option value="$USER_HOME$/working/flutter/.pub-cache/hosted/pub.flutter-io.cn/file-5.0.6/lib" />
+              <option value="$USER_HOME$/working/flutter/.pub-cache/hosted/pub.flutter-io.cn/file-5.0.7/lib" />
             </list>
           </value>
         </entry>
@@ -121,6 +121,13 @@
             </list>
           </value>
         </entry>
+        <entry key="pedantic">
+          <value>
+            <list>
+              <option value="$USER_HOME$/working/flutter/.pub-cache/hosted/pub.flutter-io.cn/pedantic-1.4.0/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="platform">
           <value>
             <list>
@@ -159,7 +166,7 @@
         <entry key="source_span">
           <value>
             <list>
-              <option value="$USER_HOME$/working/flutter/.pub-cache/hosted/pub.flutter-io.cn/source_span-1.4.1/lib" />
+              <option value="$USER_HOME$/working/flutter/.pub-cache/hosted/pub.flutter-io.cn/source_span-1.5.4/lib" />
             </list>
           </value>
         </entry>
@@ -187,14 +194,14 @@
         <entry key="term_glyph">
           <value>
             <list>
-              <option value="$USER_HOME$/working/flutter/.pub-cache/hosted/pub.flutter-io.cn/term_glyph-1.0.1/lib" />
+              <option value="$USER_HOME$/working/flutter/.pub-cache/hosted/pub.flutter-io.cn/term_glyph-1.1.0/lib" />
             </list>
           </value>
         </entry>
         <entry key="test_api">
           <value>
             <list>
-              <option value="$USER_HOME$/working/flutter/.pub-cache/hosted/pub.flutter-io.cn/test_api-0.2.1/lib" />
+              <option value="$USER_HOME$/working/flutter/.pub-cache/hosted/pub.flutter-io.cn/test_api-0.2.2/lib" />
             </list>
           </value>
         </entry>
@@ -233,25 +240,26 @@
       <root url="file://$USER_HOME$/working/flutter/.pub-cache/hosted/pub.flutter-io.cn/boolean_selector-1.0.4/lib" />
       <root url="file://$USER_HOME$/working/flutter/.pub-cache/hosted/pub.flutter-io.cn/charcode-1.1.2/lib" />
       <root url="file://$USER_HOME$/working/flutter/.pub-cache/hosted/pub.flutter-io.cn/collection-1.14.11/lib" />
-      <root url="file://$USER_HOME$/working/flutter/.pub-cache/hosted/pub.flutter-io.cn/convert-2.0.2/lib" />
+      <root url="file://$USER_HOME$/working/flutter/.pub-cache/hosted/pub.flutter-io.cn/convert-2.1.1/lib" />
       <root url="file://$USER_HOME$/working/flutter/.pub-cache/hosted/pub.flutter-io.cn/crypto-2.0.6/lib" />
       <root url="file://$USER_HOME$/working/flutter/.pub-cache/hosted/pub.flutter-io.cn/cupertino_icons-0.1.2/lib" />
-      <root url="file://$USER_HOME$/working/flutter/.pub-cache/hosted/pub.flutter-io.cn/file-5.0.6/lib" />
+      <root url="file://$USER_HOME$/working/flutter/.pub-cache/hosted/pub.flutter-io.cn/file-5.0.7/lib" />
       <root url="file://$USER_HOME$/working/flutter/.pub-cache/hosted/pub.flutter-io.cn/intl-0.15.7/lib" />
       <root url="file://$USER_HOME$/working/flutter/.pub-cache/hosted/pub.flutter-io.cn/json_rpc_2-2.0.9/lib" />
       <root url="file://$USER_HOME$/working/flutter/.pub-cache/hosted/pub.flutter-io.cn/matcher-0.12.3+1/lib" />
       <root url="file://$USER_HOME$/working/flutter/.pub-cache/hosted/pub.flutter-io.cn/meta-1.1.6/lib" />
       <root url="file://$USER_HOME$/working/flutter/.pub-cache/hosted/pub.flutter-io.cn/path-1.6.2/lib" />
+      <root url="file://$USER_HOME$/working/flutter/.pub-cache/hosted/pub.flutter-io.cn/pedantic-1.4.0/lib" />
       <root url="file://$USER_HOME$/working/flutter/.pub-cache/hosted/pub.flutter-io.cn/platform-2.2.0/lib" />
       <root url="file://$USER_HOME$/working/flutter/.pub-cache/hosted/pub.flutter-io.cn/process-3.0.9/lib" />
       <root url="file://$USER_HOME$/working/flutter/.pub-cache/hosted/pub.flutter-io.cn/pub_semver-1.4.2/lib" />
       <root url="file://$USER_HOME$/working/flutter/.pub-cache/hosted/pub.flutter-io.cn/quiver-2.0.1/lib" />
-      <root url="file://$USER_HOME$/working/flutter/.pub-cache/hosted/pub.flutter-io.cn/source_span-1.4.1/lib" />
+      <root url="file://$USER_HOME$/working/flutter/.pub-cache/hosted/pub.flutter-io.cn/source_span-1.5.4/lib" />
       <root url="file://$USER_HOME$/working/flutter/.pub-cache/hosted/pub.flutter-io.cn/stack_trace-1.9.3/lib" />
       <root url="file://$USER_HOME$/working/flutter/.pub-cache/hosted/pub.flutter-io.cn/stream_channel-1.6.8/lib" />
       <root url="file://$USER_HOME$/working/flutter/.pub-cache/hosted/pub.flutter-io.cn/string_scanner-1.0.4/lib" />
-      <root url="file://$USER_HOME$/working/flutter/.pub-cache/hosted/pub.flutter-io.cn/term_glyph-1.0.1/lib" />
-      <root url="file://$USER_HOME$/working/flutter/.pub-cache/hosted/pub.flutter-io.cn/test_api-0.2.1/lib" />
+      <root url="file://$USER_HOME$/working/flutter/.pub-cache/hosted/pub.flutter-io.cn/term_glyph-1.1.0/lib" />
+      <root url="file://$USER_HOME$/working/flutter/.pub-cache/hosted/pub.flutter-io.cn/test_api-0.2.2/lib" />
       <root url="file://$USER_HOME$/working/flutter/.pub-cache/hosted/pub.flutter-io.cn/typed_data-1.1.6/lib" />
       <root url="file://$USER_HOME$/working/flutter/.pub-cache/hosted/pub.flutter-io.cn/vector_math-2.0.8/lib" />
       <root url="file://$USER_HOME$/working/flutter/.pub-cache/hosted/pub.flutter-io.cn/vm_service_client-0.2.6/lib" />

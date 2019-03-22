@@ -468,9 +468,12 @@ class _TransformerPageViewState extends State<TransformerPageView> {
   }
 
   void onGetSize(Size size) {
-    setState(() {
-      _size = size;
-    });
+    if(mounted){
+      setState(() {
+        _size = size;
+      });
+    }
+
   }
 
   @override
