@@ -486,6 +486,7 @@ class _TransformerPageViewState extends State<TransformerPageView> {
           initialPage: widget.index,
           itemCount: widget.itemCount,
           loop: widget.loop,
+          viewportFraction: widget.viewportFraction,
           reverse:
               widget.transformer == null ? false : widget.transformer.reverse);
     }
