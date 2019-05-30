@@ -522,7 +522,7 @@ class _TransformerPageViewState extends State<TransformerPageView> {
 
     if (_pageController.getRenderIndexFromRealIndex(_activeIndex) != index) {
       _fromIndex = _activeIndex = _pageController.initialPage;
-      if (!created) {
+      if (!created && _pageController.hasClients) {
         int initPage = _pageController.getRealIndexFromRenderIndex(index);
         _pageController.animateToPage(initPage,
             duration: widget.duration, curve: widget.curve);
@@ -601,13 +601,13 @@ class _TransformerPageViewState extends State<TransformerPageView> {
         //ignore this event
         return;
     }
-    if (widget.controller.animation) {
+    if (widget.controller.animation && _pageController.hasClients) {
       _pageController
           .animateToPage(index,
               duration: widget.duration, curve: widget.curve ?? Curves.ease)
           .whenComplete(widget.controller.complete);
     } else {
-      _pageController.jumpToPage(index);
+      if(_pageController.hasClients){_pageController.jumpToPage(index);};
       widget.controller.complete();
     }
   }
