@@ -58,6 +58,9 @@ class TransformInfo {
   /// Copy from [TransformerPageView.scrollDirection]
   final Axis scrollDirection;
 
+  /// The `pageController` of the `TransformerPageView`
+  final TransformerPageController pageController;
+
   TransformInfo(
       {this.index,
       this.position,
@@ -68,7 +71,8 @@ class TransformInfo {
       this.forward,
       this.done,
       this.viewportFraction,
-      this.scrollDirection});
+      this.scrollDirection,
+      this.pageController});
 }
 
 abstract class PageTransformer {
@@ -394,7 +398,8 @@ class _TransformerPageViewState extends State<TransformerPageView> {
               forward: _pageController.position.pixels - _currentPixels >= 0,
               done: _done,
               scrollDirection: widget.scrollDirection,
-              viewportFraction: widget.viewportFraction);
+              viewportFraction: widget.viewportFraction,
+              pageController: _pageController);
           return _transformer.transform(child, info);
         });
   }
