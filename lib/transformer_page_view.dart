@@ -524,8 +524,13 @@ class _TransformerPageViewState extends State<TransformerPageView> {
       _fromIndex = _activeIndex = _pageController.initialPage;
       if (!created) {
         int initPage = _pageController.getRealIndexFromRenderIndex(index);
-        _pageController.animateToPage(initPage,
-            duration: widget.duration, curve: widget.curve);
+        if (_pageController.hasClients) {
+          _pageController.animateToPage(initPage,
+              duration: widget.duration, curve: widget.curve);
+        } else {
+          _delayedPageControllerAnimate(initPage);
+        }
+
       }
     }
     if (_transformer != null)
@@ -541,6 +546,17 @@ class _TransformerPageViewState extends State<TransformerPageView> {
       }
     }
     super.didUpdateWidget(oldWidget);
+  }
+
+  void _delayedPageControllerAnimate (int page) async {
+    await Future.delayed(Duration(milliseconds: 150));
+    if (_pageController.hasClients) {
+//      _pageController.animateToPage(page,
+//          duration: widget.duration, curve: widget.curve);
+      _pageController.jumpToPage(page);
+    } else {
+      print('No listeners on page controller detected. (transformer_page_view.dart)');
+    }
   }
 
   @override
