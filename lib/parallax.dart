@@ -4,12 +4,11 @@ import 'package:transformer_page_view/transformer_page_view.dart';
 typedef void PaintCallback(Canvas canvas, Size siz);
 
 class ColorPainter extends CustomPainter {
-
   final Paint _paint;
   final TransformInfo info;
   final List<Color> colors;
 
-  ColorPainter(this._paint,this.info,this.colors);
+  ColorPainter(this._paint, this.info, this.colors);
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -69,23 +68,16 @@ class ColorPainter extends CustomPainter {
   }
 }
 
-
-
-
-class _ParallaxColorState extends State<ParallaxColor>{
-
+class _ParallaxColorState extends State<ParallaxColor> {
   Paint paint = new Paint();
-
 
   @override
   Widget build(BuildContext context) {
     return new CustomPaint(
-      painter: new ColorPainter(paint,widget.info,widget.colors),
+      painter: new ColorPainter(paint, widget.info, widget.colors),
       child: widget.child,
     );
   }
-
-
 }
 
 class ParallaxColor extends StatefulWidget {
@@ -105,30 +97,34 @@ class ParallaxColor extends StatefulWidget {
   State<StatefulWidget> createState() {
     return new _ParallaxColorState();
   }
-
-
 }
 
 class ParallaxContainer extends StatelessWidget {
   final Widget child;
-  final double position;
+  final TransformInfo info;
   final double translationFactor;
   final double opacityFactor;
 
   ParallaxContainer(
       {@required this.child,
-      @required this.position,
-      this.translationFactor: 100.0,
-      this.opacityFactor: 1.0})
-      : assert(position != null),
+        @required this.info,
+        this.translationFactor: 100.0,
+        this.opacityFactor: 1.0})
+      : assert(info != null),
         assert(translationFactor != null);
 
   @override
   Widget build(BuildContext context) {
     return Opacity(
-      opacity: (1 - position.abs()).clamp(0.0, 1.0) * opacityFactor,
+      opacity: (1 - info.position.abs()).clamp(0.0, 1.0) * opacityFactor,
       child: new Transform.translate(
-        offset: new Offset(position * translationFactor, 0.0),
+        offset: new Offset(
+            info.scrollDirection == Axis.horizontal
+                ? info.position * translationFactor
+                : 0.0,
+            info.scrollDirection == Axis.vertical
+                ? info.position * translationFactor
+                : 0.0),
         child: child,
       ),
     );
@@ -138,14 +134,19 @@ class ParallaxContainer extends StatelessWidget {
 class ParallaxImage extends StatelessWidget {
   final Image image;
   final double imageFactor;
+  final TransformInfo info;
 
-  ParallaxImage.asset(String name, {double position, this.imageFactor: 0.3})
+  ParallaxImage.asset(String name, {@required this.info, this.imageFactor: 0.3})
       : assert(imageFactor != null),
         image = Image.asset(name,
             fit: BoxFit.cover,
             alignment: FractionalOffset(
-              0.5 + position * imageFactor,
-              0.5,
+              info.scrollDirection == Axis.horizontal
+                  ? 0.5 + info.position * imageFactor
+                  : 0.5,
+              info.scrollDirection == Axis.vertical
+                  ? 0.5 + info.position * imageFactor
+                  : 0.5,
             ));
 
   @override
