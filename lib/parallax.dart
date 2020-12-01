@@ -88,9 +88,9 @@ class ParallaxColor extends StatefulWidget {
   final TransformInfo info;
 
   ParallaxColor({
-    @required this.colors,
-    @required this.info,
-    @required this.child,
+    required this.colors,
+    required this.info,
+    required this.child,
   });
 
   @override
@@ -106,8 +106,8 @@ class ParallaxContainer extends StatelessWidget {
   final double opacityFactor;
 
   ParallaxContainer(
-      {@required this.child,
-      @required this.position,
+      {required this.child,
+      required this.position,
       this.translationFactor: 100.0,
       this.opacityFactor: 1.0})
       : assert(position != null),
@@ -129,12 +129,12 @@ class ParallaxImage extends StatelessWidget {
   final Image image;
   final double imageFactor;
 
-  ParallaxImage.asset(String name, {double position, this.imageFactor: 0.3})
+  ParallaxImage.asset(String name, {double? position, this.imageFactor: 0.3})
       : assert(imageFactor != null),
         image = Image.asset(name,
             fit: BoxFit.cover,
             alignment: FractionalOffset(
-              0.5 + position * imageFactor,
+              0.5 + (position ?? 0) * imageFactor,
               0.5,
             ));
 
