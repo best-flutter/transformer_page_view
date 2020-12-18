@@ -207,7 +207,7 @@ class TransformerPageView extends StatefulWidget {
   /// Same as [PageView.clipBehavior]
   ///
   /// Defaults to [Clip.hardEdge].
-  final Clip clipBehaviour;
+  final Clip clipBehavior;
 
   /// Same as [PageView.physics]
   final ScrollPhysics physics;
@@ -272,7 +272,7 @@ class TransformerPageView extends StatefulWidget {
     this.transformer,
     this.itemBuilder,
     this.pageController,
-    this.clipBehaviour,
+    this.clipBehavior,
     @required this.itemCount,
   })  : assert(itemCount != null),
         assert(itemCount == 0 || itemBuilder != null || transformer != null),
@@ -309,7 +309,7 @@ class TransformerPageView extends StatefulWidget {
       index: index,
       duration: duration,
       curve: curve,
-      clipBehavior:clipBehavior,
+      clipBehavior: clipBehavior,
       viewportFraction: viewportFraction,
       scrollDirection: scrollDirection,
       physics: physics,
@@ -427,7 +427,7 @@ class _TransformerPageViewState extends State<TransformerPageView> {
       onPageChanged: _onIndexChanged,
       controller: _pageController,
       scrollDirection: widget.scrollDirection,
-      clipBehavior: widget.clipBehaviour,
+      clipBehavior: widget.clipBehavior,
       physics: widget.physics,
       pageSnapping: widget.pageSnapping,
       reverse: _pageController.reverse,
