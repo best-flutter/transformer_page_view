@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
@@ -44,7 +44,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  IndexController _controller;
+  late IndexController _controller;
   List<String> _types = [
     "AccordionTransformer",
     "ThreeDTransformer",
@@ -54,8 +54,8 @@ class _MyHomePageState extends State<MyHomePage> {
     "DeepthPageTransformer"
   ];
 
-  String _type;
-  FixedExtentScrollController controller;
+  late String _type;
+  late FixedExtentScrollController controller;
   int _index = 0;
   double _viewportFraction = 1.0;
 
@@ -106,14 +106,20 @@ class _MyHomePageState extends State<MyHomePage> {
         children: <Widget>[
           new Wrap(
             children: <Widget>[
-              new RaisedButton(
+              new ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(Colors.blue),
+                ),
                 onPressed: () {
                   _controller.move(new Math.Random().nextInt(5));
                 },
-                color: Colors.blue,
+                //color: Colors.blue,
                 child: new Text("Random"),
               ),
-              new RaisedButton(
+              new ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(Colors.blue),
+                ),
                 onPressed: () {
                   Navigator.of(context)
                       .push(new MaterialPageRoute(builder: (b) {
@@ -125,10 +131,13 @@ class _MyHomePageState extends State<MyHomePage> {
                     );
                   }));
                 },
-                color: Colors.blue,
+                //color: Colors.blue,
                 child: new Text("Image"),
               ),
-              new RaisedButton(
+              new ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(Colors.blue),
+                ),
                 onPressed: () {
                   Navigator.of(context)
                       .push(new MaterialPageRoute(builder: (b) {
@@ -139,44 +148,56 @@ class _MyHomePageState extends State<MyHomePage> {
                         body: new Welcome(0));
                   }));
                 },
-                color: Colors.blue,
+                //color: Colors.blue,
                 child: new Text("Welcome"),
               ),
-              new RaisedButton(
+              new ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(Colors.blue),
+                ),
                 onPressed: () {
                   Navigator.of(context)
                       .push(new MaterialPageRoute(builder: (b) {
                     return new Zero();
                   }));
                 },
-                color: Colors.blue,
+                //color: Colors.blue,
                 child: new Text("Zero"),
               ),
             ],
           ),
           new Row(
             children: <Widget>[
-              new RaisedButton(
+              new ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(Colors.blue),
+                ),
                 onPressed: () {
                   _controller.previous();
                 },
-                color: Colors.blue,
+                //color: Colors.blue,
                 child: new Text("Preious"),
               ),
               new SizedBox(
                 width: 8.0,
               ),
-              new RaisedButton(
+              new ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(Colors.blue),
+                ),
                 onPressed: () {
                   _controller.next();
                 },
-                color: Colors.blue,
+                //color: Colors.blue,
                 child: new Text("Next"),
               ),
               new SizedBox(
                 width: 8.0,
               ),
-              new RaisedButton(
+              new ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(Colors.blue),
+                ),
                 onPressed: () {
                   showModalBottomSheet(
                       context: context,
@@ -199,7 +220,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             children: _types.map((t) => new Text(t)).toList());
                       });
                 },
-                color: Colors.blue,
+                //color: Colors.blue,
                 child: new Text("Animation"),
               ),
             ],
