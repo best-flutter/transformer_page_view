@@ -1,3 +1,7 @@
+## [0.2.0] - [2021.03.20]
+
+    * Flutter 2.0 and Null Safety compatibility
+
 ## [0.1.6] - [2019.03.22]
 
     * Fix setState() called after dispose()
