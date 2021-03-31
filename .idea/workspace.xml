@@ -6,21 +6,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da615bec-bd21-494f-ae3e-e28a9fad9952" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/example/ios/Flutter/flutter_export_environment.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/android/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/example/android/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/android/app/src/main/java/com/yourcompany/example/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/example/android/app/src/main/java/com/yourcompany/example/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/android/app/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/example/android/app/src/main/res/values/styles.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/android/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/example/android/gradle.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/lib/CachePageView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/lib/CachePageView.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/lib/screens/ProductDetailView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/lib/screens/ProductDetailView.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/example/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/transformer_page_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/transformer_page_view.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
-    </list>
+    <list default="true" id="da615bec-bd21-494f-ae3e-e28a9fad9952" name="Default" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -35,12 +21,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="100" />
-    <option name="y" value="93" />
-    <option name="width" value="1397" />
-    <option name="height" value="877" />
   </component>
   <component name="ProjectId" id="1qWLErRpWi79E1B5O87e5Bp3LeF" />
   <component name="ProjectLevelVcsManager">
@@ -340,22 +320,22 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1324" height="187" key="GridCell.Tab.0.bottom" timestamp="1617190798058">
+    <state width="1324" height="187" key="GridCell.Tab.0.bottom" timestamp="1617191226857">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state width="1324" height="187" key="GridCell.Tab.0.bottom/0.0.1366.768@0.0.1366.768" timestamp="1617190798058" />
-    <state width="1324" height="187" key="GridCell.Tab.0.center" timestamp="1617190798057">
+    <state width="1324" height="187" key="GridCell.Tab.0.bottom/0.0.1366.768@0.0.1366.768" timestamp="1617191226857" />
+    <state width="1324" height="187" key="GridCell.Tab.0.center" timestamp="1617191226856">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state width="1324" height="187" key="GridCell.Tab.0.center/0.0.1366.768@0.0.1366.768" timestamp="1617190798057" />
-    <state width="1324" height="187" key="GridCell.Tab.0.left" timestamp="1617190798056">
+    <state width="1324" height="187" key="GridCell.Tab.0.center/0.0.1366.768@0.0.1366.768" timestamp="1617191226856" />
+    <state width="1324" height="187" key="GridCell.Tab.0.left" timestamp="1617191226856">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state width="1324" height="187" key="GridCell.Tab.0.left/0.0.1366.768@0.0.1366.768" timestamp="1617190798056" />
-    <state width="1324" height="187" key="GridCell.Tab.0.right" timestamp="1617190798057">
+    <state width="1324" height="187" key="GridCell.Tab.0.left/0.0.1366.768@0.0.1366.768" timestamp="1617191226856" />
+    <state width="1324" height="187" key="GridCell.Tab.0.right" timestamp="1617191226856">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state width="1324" height="187" key="GridCell.Tab.0.right/0.0.1366.768@0.0.1366.768" timestamp="1617190798057" />
+    <state width="1324" height="187" key="GridCell.Tab.0.right/0.0.1366.768@0.0.1366.768" timestamp="1617191226856" />
     <state x="187" y="18" key="SettingsEditor" timestamp="1617190324760">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
