@@ -78,6 +78,7 @@ const PageScrollPhysics _kPagePhysics = PageScrollPhysics();
 
 class Ext extends PageView {}
 
+// ignore: must_be_immutable
 class MyPageView extends StatelessWidget {
   final SliverChildListDelegate childrenDelegate;
 
