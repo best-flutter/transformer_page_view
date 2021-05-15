@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:transformer_page_view/transformer_page_view.dart';
+import 'package:transformer_page_view_tv/transformer_page_view.dart';
 
 void main() {
   testWidgets('TransformerPageView basic usage', (WidgetTester tester) async {

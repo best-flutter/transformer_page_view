@@ -1,8 +1,8 @@
-name: transformer_page_view
+name: transformer_page_view_tv
 description: PageTransformer for flutter
-version: 0.1.6
+version: 0.1.6-nullsafety
 author: JZoom <jzoom8112@gmail.com>
-homepage:  https://github.com/jzoom/transformer_page_view
+homepage:  https://github.com/thorved/transformer_page_view
 
 environment:
   sdk: '>=2.12.0 <3.0.0'

@@ -1,3 +1,7 @@
+## [0.1.6-nullsafety] - [02.05.2021]
+
+    * adds null safety
+
 ## [0.1.6] - [2019.03.22]
 
     * Fix setState() called after dispose()

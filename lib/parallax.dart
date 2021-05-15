@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:transformer_page_view/transformer_page_view.dart';
+import 'package:transformer_page_view_tv/transformer_page_view.dart';
 
 typedef void PaintCallback(Canvas canvas, Size siz);
 
@@ -129,7 +129,8 @@ class ParallaxImage extends StatelessWidget {
   final Image image;
   final double imageFactor;
 
-  ParallaxImage.asset(String name, {required double position, this.imageFactor: 0.3})
+  ParallaxImage.asset(String name,
+      {required double position, this.imageFactor: 0.3})
       : assert(imageFactor != null),
         image = Image.asset(name,
             fit: BoxFit.cover,

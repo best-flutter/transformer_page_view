@@ -1,9 +1,9 @@
 library transformer_page_view;
 
 import 'package:flutter/widgets.dart';
-import 'package:transformer_page_view/index_controller.dart';
-export 'package:transformer_page_view/index_controller.dart';
-export 'package:transformer_page_view/parallax.dart';
+import 'package:transformer_page_view_tv/index_controller.dart';
+export 'package:transformer_page_view_tv/index_controller.dart';
+export 'package:transformer_page_view_tv/parallax.dart';
 
 ///
 /// NOTICE::
@@ -360,7 +360,8 @@ class _TransformerPageViewState extends State<TransformerPageView> {
     return new AnimatedBuilder(
         animation: _pageController!,
         builder: (BuildContext c, Widget? w) {
-          int? renderIndex = _pageController!.getRenderIndexFromRealIndex(index);
+          int? renderIndex =
+              _pageController!.getRenderIndexFromRealIndex(index);
           Widget? child;
           if (widget.itemBuilder != null) {
             child = widget.itemBuilder!(context, renderIndex!);
@@ -400,9 +401,10 @@ class _TransformerPageViewState extends State<TransformerPageView> {
   }
 
   double? _calcCurrentPixels() {
-    _currentPixels = _pageController!.getRenderIndexFromRealIndex(_activeIndex)! *
-        _pageController!.position.viewportDimension *
-        widget.viewportFraction;
+    _currentPixels =
+        _pageController!.getRenderIndexFromRealIndex(_activeIndex)! *
+            _pageController!.position.viewportDimension *
+            widget.viewportFraction;
 
     //  print("activeIndex:$_activeIndex , pix:$_currentPixels");
 
@@ -446,7 +448,8 @@ class _TransformerPageViewState extends State<TransformerPageView> {
   void _onIndexChanged(int index) {
     _activeIndex = index;
     if (widget.onPageChanged != null) {
-      widget.onPageChanged!(_pageController!.getRenderIndexFromRealIndex(index));
+      widget
+          .onPageChanged!(_pageController!.getRenderIndexFromRealIndex(index));
     }
   }
 
@@ -468,12 +471,11 @@ class _TransformerPageViewState extends State<TransformerPageView> {
   }
 
   void onGetSize(Size? size) {
-    if(mounted){
+    if (mounted) {
       setState(() {
         _size = size;
       });
     }
-
   }
 
   @override
