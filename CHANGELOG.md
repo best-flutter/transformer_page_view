@@ -1,3 +1,6 @@
+## [0.1.7-nullsafety] - [02.05.2021]
+
+    * Fix in null safety
 ## [0.1.6-nullsafety] - [02.05.2021]
 
     * adds null safety
