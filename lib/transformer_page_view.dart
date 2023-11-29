@@ -217,7 +217,7 @@ class TransformerPageView extends StatefulWidget {
 
   final IndexedWidgetBuilder itemBuilder;
 
-  // See [IndexController.mode],[IndexController.next],[IndexController.previous]
+  // See [IndexController.move],[IndexController.next],[IndexController.previous]
   final IndexController controller;
 
   /// Animation duration
